@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hexo--搭建 | 杨晓龙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装过程中如果出现问题请到最后面查看问题总结，或许能帮助你解决问题。ß前言
+Hexo是一个很好的博客，个人觉得他的界面干净利落，阅读体验也是很好。初次接触Hexo是在朋友的介绍下才知道的，hexo是需要手动搭建（觉得B格很高），在朋友的帮助下也终于是完成了。开篇记录一下搭建的过程希望能帮助到浏览到这里的朋友我的系统为OS X，windows也可以参考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo--搭建">
+<meta property="og:url" content="http://yoursite.com/2014/09/28/hexo-搭建/index.html">
+<meta property="og:site_name" content="杨晓龙">
+<meta property="og:description" content="安装过程中如果出现问题请到最后面查看问题总结，或许能帮助你解决问题。ß前言
+Hexo是一个很好的博客，个人觉得他的界面干净利落，阅读体验也是很好。初次接触Hexo是在朋友的介绍下才知道的，hexo是需要手动搭建（觉得B格很高），在朋友的帮助下也终于是完成了。开篇记录一下搭建的过程希望能帮助到浏览到这里的朋友我的系统为OS X，windows也可以参考。">
+<meta property="og:image" content="http://i13.tietuku.com/e92a14c7880b394d.png">
+<meta property="og:image" content="http://i13.tietuku.com/328dad03b5d45c6a.png">
+<meta property="og:image" content="http://i13.tietuku.com/a866c741cacf10af.png">
+<meta property="og:image" content="http://img-storage.qiniudn.com/15-11-3/92193733.jpg">
+<meta property="og:image" content="http://i13.tietuku.com/4614dd21ce29ef47.png">
+<meta property="og:image" content="http://i13.tietuku.com/ea3165bdd678afb9.png">
+<meta property="og:updated_time" content="2015-11-29T07:48:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo--搭建">
+<meta name="twitter:description" content="安装过程中如果出现问题请到最后面查看问题总结，或许能帮助你解决问题。ß前言
+Hexo是一个很好的博客，个人觉得他的界面干净利落，阅读体验也是很好。初次接触Hexo是在朋友的介绍下才知道的，hexo是需要手动搭建（觉得B格很高），在朋友的帮助下也终于是完成了。开篇记录一下搭建的过程希望能帮助到浏览到这里的朋友我的系统为OS X，windows也可以参考。">
+  
+    <link rel="alternative" href="/atom.xml" title="杨晓龙" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4226557088,1275478253&amp;fm=116&amp;gp=0.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">杨晓龙</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">1%想法 + 98%努力 + 1%运气 = 100%成功</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+							<li><a href="/tags/相册">相册</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">杨晓龙</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4226557088,1275478253&amp;fm=116&amp;gp=0.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">杨晓龙</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">1%想法 + 98%努力 + 1%运气 = 100%成功</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+					<li><a href="/tags/相册">相册</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="[post]-hexo-搭建" class="article article-type-[post]" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/28/hexo-搭建/" class="article-date">
+  	<time datetime="2014-09-28T11:23:19.000Z" itemprop="datePublished">2014-09-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo--搭建
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo教程/">hexo教程</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/hexo/">hexo</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="安装过程中如果出现问题请到最后面查看问题总结，或许能帮助你解决问题。ß">安装过程中如果出现问题请到最后面查看问题总结，或许能帮助你解决问题。ß</h3><h2 id="前言">前言</h2><hr>
+<p>Hexo是一个很好的博客，个人觉得他的界面干净利落，阅读体验也是很好。初次接触Hexo是在朋友的介绍下才知道的，hexo是需要手动搭建（觉得B格很高），在朋友的帮助下也终于是完成了。<br>开篇记录一下搭建的过程希望能帮助到浏览到这里的朋友<br>我的系统为OS X，windows也可以参考。</p>
+<a id="more"></a>
+<h2 id="简介">简介</h2><hr>
+<p>Hexo是一个开源的静态博客生成器，用node.js开发，作者是台湾大学生tommy351。</p>
+<h2 id="思路总结">思路总结</h2><hr>
+<p><img src="http://i13.tietuku.com/e92a14c7880b394d.png" alt="思路"></p>
+<h2 id="环境配置">环境配置</h2><hr>
+<h3 id="安装Git">安装Git</h3><p>安装过Xcode可以直接跳过这步，因为Xcode自带Git<br>Git有很多，Mac和Windows都可以直接到<a href="git-scm.com">git-scm</a>官网下载安装</p>
+<h3 id="安装node-js">安装node.js</h3><p>奉上Mac<a href="http://pan.baidu.com/s/1hqHbx6s" target="_blank" rel="external">node-v4.2.2.pkg</a>安装包。</p>
+<p>这两个软件的安装步骤就不多做介绍，一直点下一步就好</p>
+<h2 id="安装">安装</h2><hr>
+<h3 id="安装hexo">安装hexo</h3><pre><code>sudo npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> hexo</span>
+</code></pre><h3 id="初始化">初始化</h3><p>我们可以创建一个新文件夹作为hexo的安装目录，把所有的hexo文件都放里面，主要是为了方便管理。</p>
+<p><strong>初始化有两种方式：</strong></p>
+<p>直接指定目录</p>
+<pre><code>hexo init folder 
+<span class="string">folder:</span>是指定目录的文件路径。例：<span class="regexp">/Documents/</span>hexo
+</code></pre><p>进入指定目录(cd /文件夹路径)</p>
+<pre><code><span class="title">hexo</span> init
+</code></pre><p>终端执行命令后显示的结果：</p>
+<pre><code>[info] Copying data
+[info] You are almost done! Don't forget <span class="keyword">to</span> <span class="command">run</span> `npm install` <span class="keyword">before</span> start blogging <span class="keyword">with</span> Hexo!
+</code></pre><h3 id="安装依赖包">安装依赖包</h3><pre><code>sudo npm <span class="keyword">install</span>
+</code></pre><h3 id="生成静态页面">生成静态页面</h3><p>cd 到你的hexo安装目录（工作目录），执行如下命令</p>
+<pre><code>hexo <span class="keyword">generate</span> 简写 hexo <span class="keyword">g</span>
+</code></pre><p>必须到你新建的hexo安装目录下执行，否则不成功</p>
+<h3 id="本地启动测试">本地启动测试</h3><pre><code>hexo <span class="keyword">server</span> 简写 hexo s
+</code></pre><p>到此本地服务已经完成，可以再浏览器中输入<a href="http://localhost:4000进行查看。接下来需要把我们创建的静态页面托管到github上，别人才能访问到" target="_blank" rel="external">http://localhost:4000进行查看。接下来需要把我们创建的静态页面托管到github上，别人才能访问到</a></p>
+<h2 id="部署到Github">部署到Github</h2><hr>
+<h3 id="注册Github账号">注册Github账号</h3><p>这里就不再赘述，已有Github账号可以跳过此步骤。</p>
+<h3 id="新建repository(仓库)">新建repository(仓库)</h3><p>登陆Github账号后，点击右上角的“+”号按钮，选择“New repository”<br><img src="http://i13.tietuku.com/328dad03b5d45c6a.png" alt="add repository"></p>
+<p>在Create a new repository界面填写格式如下图所示: 用户名.github.io</p>
+<p>填写完成点Create repository创建完成</p>
+<p><img src="http://i13.tietuku.com/a866c741cacf10af.png" alt="reposity"></p>
+<h4 id="生成SSH_Keys：">生成SSH Keys：</h4><p>我们如何让本地git项目与远程的github建立联系？这时候就要用到SSH Keys</p>
+<h5 id="1、生成SSH_Keys">1、生成SSH Keys</h5><p>使用ssh-keygen命令生成密钥对</p>
+<pre><code>ssh-keygen -t rsa -<span class="keyword">C</span> <span class="string">"这里是你申请Github账号时的邮箱"</span>
+</code></pre><p>然后系统会要你输入密码：（我们输入的密码会在你提交项目的时候使用）</p>
+<pre><code>Enter passphrase (empty <span class="keyword">for</span> no passphrase):<span class="variable">&lt;输入加密串&gt;</span>
+Enter same passphrase again:<span class="variable">&lt;再次输入加密串&gt;</span>
+</code></pre><p>（终端提示生成的文件路径）找到你生成的密钥找到<code>id_rsa.pub</code>用终端进入编辑，复制密钥。</p>
+<p><img src="http://img-storage.qiniudn.com/15-11-3/92193733.jpg" alt=""></p>
+<h5 id="2、添加你的SSH_Key到ssh-agent">2、添加你的SSH Key到<a href="http://blog.csdn.net/icebergwang/article/details/13738313" target="_blank" rel="external">ssh-agent</a></h5><p>添加你的SSH Key到ssh-agent</p>
+<pre><code><span class="comment">//在后台打开 ssh-agent</span>
+<span class="built_in">eval</span> <span class="string">"$(ssh-agent -s)"</span>
+
+添加你的SSH Key到ssh-agent
+ssh-add ~<span class="regexp">/.ssh/i</span>d_rsa
+</code></pre><h4 id="添加SSH_Key到Github：">添加SSH Key到Github：</h4><h5 id="1、添加SSH_Key">1、添加SSH Key</h5><p>通过命令复制SSH Key内容到系统剪贴板</p>
+<pre><code>pbcopy &lt; ~<span class="regexp">/.ssh/id</span>_rsa.pub
+</code></pre><p>登陆Github,点击右侧用户按钮，选择Settings</p>
+<p><img src="http://i13.tietuku.com/4614dd21ce29ef47.png" alt="SSH"></p>
+<p>点击 Add SSH key 按钮，将复制的密钥粘贴到 Key 栏</p>
+<p><img src="http://i13.tietuku.com/ea3165bdd678afb9.png" alt="Key"></p>
+<h5 id="2、测试能不能链接成功">2、测试能不能链接成功</h5><p>测试</p>
+<pre><code><span class="title">ssh</span> -T git<span class="variable">@github</span>.com
+</code></pre><p>执行结果</p>
+<pre><code>Permanently added <span class="keyword">the</span> RSA host key <span class="keyword">for</span> IP address '<span class="number">192.30</span><span class="number">.252</span><span class="number">.130</span>' <span class="keyword">to</span> <span class="keyword">the</span> <span class="type">list</span> <span class="keyword">of</span> known hosts.
+Are you sure you want <span class="keyword">to</span> <span class="keyword">continue</span> connecting (yes/no)?&lt;输入yes&gt;
+Hi username! You've successfully authenticated, <span class="keyword">but</span> GitHub <span class="keyword">does</span> <span class="keyword">not</span>
+</code></pre><p>现在你已经可以通过SSH链接到Github了</p>
+<p>如果有问题，请再配置。参考网站</p>
+<p>生成SSH Keys</p>
+<p><a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">Generating SSH Keys</a></p>
+<p>Error: Permission denied (publickey)错误</p>
+<p><a href="https://help.github.com/articles/error-permission-denied-publickey/" target="_blank" rel="external">Error: Permission denied (publickey)</a></p>
+<h4 id="设置你的用户名和密码：">设置你的用户名和密码：</h4><p>Git会根据用户的名字和邮箱来记录提交，GitHub也是用这些信息来做权限的处理。</p>
+<pre><code>git config --global user<span class="class">.name</span> <span class="string">"这里是你申请Github账号时的name"</span>
+git config --global user<span class="class">.email</span> <span class="string">"这里是你申请Github账号时的邮箱"</span>
+</code></pre><h3 id="部署">部署</h3><p>编辑 _config.yml(在你的工作目录下)，把下面的your_username换成你的github用户名</p>
+<pre><code><span class="attribute">deploy</span>:
+  <span class="attribute">type</span>: git 
+  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/your_username/your_username.github.io.git</span>
+  <span class="attribute">branch</span>: master
+</code></pre><p>执行部署命令</p>
+<pre><code>hexo <span class="keyword">d</span> -<span class="keyword">g</span>         hexo <span class="keyword">generate</span> 和 hexo deploy 合写
+</code></pre><hr>
+<h2 id="问题：">问题：</h2><ul>
+<li>1、 部署时出现：Error: EACCES, open ‘/Users/Desktop/hexo/public/js/script.js’  </li>
+<li>原因：权限问题在部署命令前加sudo</li>
+<li>2、 deployer找不到git: ERROR Deployer not found: git</li>
+<li>解决方法:<code>npm install hexo-deployer-git --save</code></li>
+<li><p>3、</p>
+<pre><code>{ [<span class="string">Error:</span> Cannot find module <span class="string">'./build/Release/DTraceProviderBindings'</span>] <span class="string">code:</span> <span class="string">'MODULE_NOT_FOUND'</span> }
+{ [<span class="string">Error:</span> Cannot find module <span class="string">'./build/default/DTraceProviderBindings'</span>] <span class="string">code:</span> <span class="string">'MODULE_NOT_FOUND'</span> }
+{ [<span class="string">Error:</span> Cannot find module <span class="string">'./build/Debug/DTraceProviderBindings'</span>] <span class="string">code:</span> <span class="string">'MODULE_NOT_FOUND'</span> }
+</code></pre><p>  解决方法：</p>
+<pre><code><span class="built_in">npm</span> install hexo --<span class="literal">no</span>-optional
+</code></pre></li>
+<li><p>4、<code>npm install</code> 卡住不动</p>
+<p>  使用<code>cnpm</code>加速<code>npm</code>(原文地址：<a href="https://cnodejs.org/topic/5338c5db7cbade005b023c98" target="_blank" rel="external">https://cnodejs.org/topic/5338c5db7cbade005b023c98</a>)</p>
+<pre><code><span class="built_in">npm</span> --registry=<span class="attribute">https</span>:<span class="regexp">//</span>registry.<span class="built_in">npm</span>.taobao.org install koa
+</code></pre></li>
+<li><p>5、su 切换，提示：“密码不正确”；</p>
+</li>
+</ul>
+<p><a href="http://blog.csdn.net/zhangdaiscott/article/details/18666471" target="_blank" rel="external">原文地址</a></p>
+<ul>
+<li>6、问题汇总：<br><a href="http://wp.huangshiyang.com/hexo%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" target="_blank" rel="external">非常全的问题汇总，大家可以参考下</a></li>
+</ul>
+<hr>
+<p>到此我们的博客就部署完毕，快看一下成果吧</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/28/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="hexo-搭建" data-title="hexo--搭建" data-url="http://yoursite.com/2014/09/28/hexo-搭建/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 杨晓龙
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

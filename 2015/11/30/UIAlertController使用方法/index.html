@@ -3,18 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>刚刚开始 | 杨晓龙</title>
+  <title>UIAlertController使用方法 | 杨晓龙</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我是一名iOS工程师，由于工作原因，一直没有时间来更新博客，现在有时间写博客了，算是对自己掌握的知识整理与回顾，希望能给人带来方便。">
+  <meta name="description" content="UIAlertController使用UIAlertController基本可以简单的理解为UIAlertView + UIActionSheet。需要注意的是：UIAcertController是要在viewDidAppear之后加载才会显示。
+UIAlertView">
 <meta property="og:type" content="article">
-<meta property="og:title" content="刚刚开始">
-<meta property="og:url" content="http://yoursite.com/2015/11/29/刚刚开始/index.html">
+<meta property="og:title" content="UIAlertController使用方法">
+<meta property="og:url" content="http://yoursite.com/2015/11/30/UIAlertController使用方法/index.html">
 <meta property="og:site_name" content="杨晓龙">
-<meta property="og:description" content="我是一名iOS工程师，由于工作原因，一直没有时间来更新博客，现在有时间写博客了，算是对自己掌握的知识整理与回顾，希望能给人带来方便。">
-<meta property="og:updated_time" content="2015-11-29T08:38:10.000Z">
+<meta property="og:description" content="UIAlertController使用UIAlertController基本可以简单的理解为UIAlertView + UIActionSheet。需要注意的是：UIAcertController是要在viewDidAppear之后加载才会显示。
+UIAlertView">
+<meta property="og:image" content="http://i12.tietuku.com/c7ea0283c65d8aee.png">
+<meta property="og:image" content="http://i5.tietuku.com/f991e1f66d094c25.png">
+<meta property="og:image" content="http://i5.tietuku.com/61b5f4ac03f56132.png">
+<meta property="og:updated_time" content="2015-12-11T02:00:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刚刚开始">
-<meta name="twitter:description" content="我是一名iOS工程师，由于工作原因，一直没有时间来更新博客，现在有时间写博客了，算是对自己掌握的知识整理与回顾，希望能给人带来方便。">
+<meta name="twitter:title" content="UIAlertController使用方法">
+<meta name="twitter:description" content="UIAlertController使用UIAlertController基本可以简单的理解为UIAlertView + UIActionSheet。需要注意的是：UIAcertController是要在viewDidAppear之后加载才会显示。
+UIAlertView">
   
     <link rel="alternative" href="/atom.xml" title="杨晓龙" type="application/atom+xml">
   
@@ -195,11 +201,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-刚刚开始" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-UIAlertController使用方法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/11/29/刚刚开始/" class="article-date">
-  	<time datetime="2015-11-29T08:26:25.000Z" itemprop="datePublished">2015-11-29</time>
+      <a href="/2015/11/30/UIAlertController使用方法/" class="article-date">
+  	<time datetime="2015-11-30T15:00:58.000Z" itemprop="datePublished">2015-11-30</time>
 </a>
     </div>
   
@@ -212,7 +218,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      刚刚开始
+      UIAlertController使用方法
     </h1>
   
 
@@ -220,7 +226,15 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UIAlertController/">UIAlertController</a></li></ul>
+	</div>
+
         
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/iOS/">iOS</a>
+	</div>
+
 
         <div class="clearfix"></div>
       </div>
@@ -228,8 +242,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我是一名iOS工程师，由于工作原因，一直没有时间来更新博客，现在有时间写博客了，算是对自己掌握的知识整理与回顾，希望能给人带来方便。</p>
+        <h2 id="UIAlertController使用">UIAlertController使用</h2><p>UIAlertController基本可以简单的理解为UIAlertView + UIActionSheet。<br>需要注意的是：UIAcertController是要在viewDidAppear之后加载才会显示。</p>
+<h3 id="UIAlertView">UIAlertView</h3><p><img src="http://i12.tietuku.com/c7ea0283c65d8aee.png" alt=""></p>
+<a id="more"></a>
+<pre><code> - (<span class="keyword">void</span>)addAlertView1 {
+<span class="built_in">UIAlertController</span> *alertView1 = [<span class="built_in">UIAlertController</span> alertControllerWithTitle:<span class="string">@"提示"</span> message:<span class="string">@"你好"</span> preferredStyle:<span class="built_in">UIAlertControllerStyleAlert</span>];
+<span class="built_in">UIAlertAction</span> *okAction = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"确定"</span> style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) {
+    <span class="built_in">NSLog</span>(<span class="string">@"确定按钮被点击"</span>);
+}];
+<span class="built_in">UIAlertAction</span> *canselAction = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"取消"</span> style:<span class="built_in">UIAlertActionStyleCancel</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) {
+    <span class="built_in">NSLog</span>(<span class="string">@"取消按钮被点击"</span>);
+}];
 
+[alertView1 addAction:okAction];
+[alertView1 addAction:canselAction];
+
+[<span class="keyword">self</span> presentViewController:alertView1 animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
+}
+</code></pre><p><img src="http://i5.tietuku.com/f991e1f66d094c25.png" alt=""></p>
+<pre><code>- (<span class="keyword">void</span>)addAlertView2 {
+
+<span class="built_in">UIAlertController</span> *alertController = [<span class="built_in">UIAlertController</span> alertControllerWithTitle:<span class="string">@"提示"</span> message:<span class="string">@"hello用户"</span> preferredStyle:<span class="built_in">UIAlertControllerStyleAlert</span>];
+[alertController addTextFieldWithConfigurationHandler:^(<span class="built_in">UITextField</span> * _Nonnull textField1) {
+    textField1<span class="variable">.keyboardType</span> = <span class="built_in">UIKeyboardTypeNumberPad</span>;
+    textField1<span class="variable">.placeholder</span> = <span class="string">@"请输入用户名"</span>;
+}];
+[alertController addTextFieldWithConfigurationHandler:^(<span class="built_in">UITextField</span> * _Nonnull textField2) {
+    textField2<span class="variable">.keyboardType</span> = <span class="built_in">UIKeyboardTypeNumberPad</span>;
+    textField2<span class="variable">.placeholder</span> = <span class="string">@"请输入密码"</span>;
+}];
+<span class="built_in">UIAlertAction</span> *canselAction = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"取消"</span> style:<span class="built_in">UIAlertActionStyleCancel</span> handler:<span class="literal">nil</span>];
+<span class="built_in">UIAlertAction</span> *okAction = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"确定"</span> style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) {
+    <span class="built_in">UITextField</span> *textField1 = [[alertController textFields] firstObject];
+    <span class="keyword">if</span> (textField1<span class="variable">.text</span><span class="variable">.length</span> == <span class="number">0</span>) {
+        <span class="comment">// 这里加入自己的逻辑</span>
+        <span class="built_in">NSLog</span>(<span class="string">@"用户名不能为空"</span>);
+    }
+    <span class="built_in">UITextField</span> *textField2 = [[alertController textFields] objectAtIndex:<span class="number">1</span>];
+    <span class="keyword">if</span> (textField2<span class="variable">.text</span><span class="variable">.length</span> == <span class="number">0</span>) {
+
+        <span class="built_in">NSLog</span>(<span class="string">@"密码不能为空"</span>);
+    }
+}];
+[alertController addAction:canselAction];
+[alertController addAction:okAction];
+[<span class="keyword">self</span> presentViewController:alertController animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
+
+}
+</code></pre><p>ActionSheet</p>
+<p><img src="http://i5.tietuku.com/61b5f4ac03f56132.png" alt=""></p>
+<pre><code>- (<span class="keyword">void</span>)addActionSheet {
+
+<span class="built_in">UIAlertController</span> *actionSheet = [<span class="built_in">UIAlertController</span> alertControllerWithTitle:<span class="string">@"请选择"</span> message:<span class="string">@"你太牛了"</span> preferredStyle:<span class="built_in">UIAlertControllerStyleActionSheet</span>];
+
+<span class="built_in">UIAlertAction</span> *save = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"save"</span> style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) {
+    <span class="built_in">NSLog</span>(<span class="string">@"选择了%@"</span>,action<span class="variable">.title</span>);
+}];
+<span class="built_in">UIAlertAction</span> *delete = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"delete"</span> style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) {
+    <span class="built_in">NSLog</span>(<span class="string">@"选择了%@"</span>,action<span class="variable">.title</span>);
+}];
+<span class="built_in">UIAlertAction</span> *cancle = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"cancle"</span> style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) {
+    <span class="built_in">NSLog</span>(<span class="string">@"选择了%@"</span>,action<span class="variable">.title</span>);
+}];
+
+[actionSheet addAction:save];
+[actionSheet addAction:delete];
+[actionSheet addAction:cancle];
+
+[<span class="keyword">self</span> presentViewController:actionSheet animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
+
+}
+</code></pre>
       
     </div>
     
@@ -238,18 +321,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/11/30/UIAlertController使用方法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          UIAlertController使用方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/01/03/cocoaPods的安装和使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CocoaPods的安装和使用</div>
+    <a href="/2015/11/29/刚刚开始/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">刚刚开始</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -278,7 +352,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="刚刚开始" data-title="刚刚开始" data-url="http://yoursite.com/2015/11/29/刚刚开始/"></div>
+	<div class="ds-thread" data-thread-key="UIAlertController使用方法" data-title="UIAlertController使用方法" data-url="http://yoursite.com/2015/11/30/UIAlertController使用方法/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

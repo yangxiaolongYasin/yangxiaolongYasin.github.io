@@ -196,6 +196,72 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-模仿新浪UI" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/21/模仿新浪UI/" class="article-date">
+  	<time datetime="2016-01-21T06:53:50.000Z" itemprop="datePublished">2016-01-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/21/模仿新浪UI/">模仿新浪UI</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://raw.githubusercontent.com/bb-coder/BHBPopView/master/LICENSE" target="_blank" rel="external"><img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat" alt="License MIT"></a><br><a href="http://cocoapods.org/?q=BHBPopView" target="_blank" rel="external"><img src="http://img.shields.io/cocoapods/v/YYKit.svg?style=flat" alt="CocoaPods"></a><br><a href="http://cocoapods.org/?q=BHBPopView" target="_blank" rel="external"><img src="http://img.shields.io/cocoapods/p/YYKit.svg?style=flat" alt="CocoaPods"></a><br><a href="https://www.apple.com/nl/ios/" target="_blank" rel="external"><img src="https://img.shields.io/badge/support-iOS%207%2B%20-blue.svg?style=flat" alt="Support"></a></p>
+<h1 id="BHBPopView">BHBPopView</h1><p>仿新浪微博客户端“加号”按钮弹出动画</p>
+<p><img src="http://7xkdhe.com1.z0.glb.clouddn.com/sinaAnimation1.gif" alt="演示1"><br><img src="http://7xkdhe.com1.z0.glb.clouddn.com/sinaAnimation2.gif" alt="演示2"></p>
+<p>##怎么使用：</p>
+<p>###0.下载或者在cocoapods中引入：</p>
+<pre><code><span class="title">pod</span> <span class="string">'BHBPopView'</span>, <span class="string">'~&gt; 1.0.0'</span>
+</code></pre><p>###1.导入头文件</p>
+<pre><code><span class="id">#import</span> <span class="string">"BHBPopView.h"</span>
+</code></pre><p>###2.显示弹出框<br>    //添加popview<br>    [BHBPopView showToView:self.view<br>        andImages:@[@”images.bundle/tabbar_compose_idea”,<br>          @”images.bundle/tabbar_compose_photo”,@”images.bundle/tabbar_compose_camera”,<br>          @”images.bundle/tabbar_compose_lbs”,@”images.bundle/tabbar_compose_review”,<br>          @”images.bundle/tabbar_compose_more”]<br>        andTitles:<br>          @[@”Text”,@”Albums”,@”Camera”,@”Check in”,@”Review”,@”More”]<br>        andSelectBlock:^(BHBItem *item, NSInteger index) {</p>
+<pre><code>    }
+]<span class="comment">;</span>
+</code></pre><p>###3.使用带more按钮滑动显示第二屏功能<br>    BHBItem <em> item0 = [[BHBItem alloc]initWithTitle:@”Text” Icon:@”images.bundle/tabbar_compose_idea”];<br>    BHBItem </em> item1 = [[BHBItem alloc]initWithTitle:@”Albums” Icon:@”images.bundle/tabbar_compose_photo”];<br>    BHBItem <em> item2 = [[BHBItem alloc]initWithTitle:@”Camera” Icon:@”images.bundle/tabbar_compose_camera”];<br>    BHBItem </em> item3 = [[BHBItem alloc]initWithTitle:@”Check in” Icon:@”images.bundle/tabbar_compose_lbs”];<br>    BHBItem <em> item4 = [[BHBItem alloc]initWithTitle:@”Review” Icon:@”images.bundle/tabbar_compose_review”];<br>    BHBItem </em> item5 = [[BHBItem alloc]initWithTitle:@”More” Icon:@”images.bundle/tabbar_compose_more”];<br>    //第六个按钮是more按钮<br>    item5.isMore = YES;<br>    BHBItem <em> item6 = [[BHBItem alloc]initWithTitle:@”Friend Circle” Icon:@”images.bundle/tabbar_compose_friend”];<br>    BHBItem </em> item7 = [[BHBItem alloc]initWithTitle:@”Weibo Camera” Icon:@”images.bundle/tabbar_compose_wbcamera”];<br>    BHBItem <em> item8 = [[BHBItem alloc]initWithTitle:@”Music” Icon:@”images.bundle/tabbar_compose_music”];<br>    BHBItem </em> item9 = [[BHBItem alloc]initWithTitle:@”Blog” Icon:@”images.bundle/tabbar_compose_weibo”];<br>    BHBItem <em> item10 = [[BHBItem alloc]initWithTitle:@”Collection” Icon:@”images.bundle/tabbar_compose_transfer”];<br>    BHBItem </em> item11 = [[BHBItem alloc]initWithTitle:@”Voice” Icon:@”images.bundle/tabbar_compose_voice”];</p>
+<pre><code><span class="comment">//添加popview</span>
+[BHBPopView <span class="string">showToView:</span>self.view <span class="string">withItems:</span>@[item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11]<span class="string">andSelectBlock:</span>^(BHBItem *item, NSInteger index) {
+    NSLog(@<span class="string">"%ld,选中%@"</span>,index,item.title);
+}];
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-iOS二维码" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">

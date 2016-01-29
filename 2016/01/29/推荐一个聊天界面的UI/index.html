@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>推荐一个聊天界面的UI | 杨晓龙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MQChatViewControllerAn easy-to-customize messages UI Library for iOS.
+MQChatViewController 是一套易于定制的 iOS 开源聊天界面。
+为什么再写一套聊天 Library？之前在其他项目中用过 JSQMessagesViewController 和 UUChatTableView，两个开源项目都很好，但由于 J">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐一个聊天界面的UI">
+<meta property="og:url" content="http://yoursite.com/2016/01/29/推荐一个聊天界面的UI/index.html">
+<meta property="og:site_name" content="杨晓龙">
+<meta property="og:description" content="MQChatViewControllerAn easy-to-customize messages UI Library for iOS.
+MQChatViewController 是一套易于定制的 iOS 开源聊天界面。
+为什么再写一套聊天 Library？之前在其他项目中用过 JSQMessagesViewController 和 UUChatTableView，两个开源项目都很好，但由于 J">
+<meta property="og:image" content="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo1.gif">
+<meta property="og:image" content="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo2.gif">
+<meta property="og:image" content="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo3.gif">
+<meta property="og:image" content="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo4.gif">
+<meta property="og:image" content="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo5.gif">
+<meta property="og:image" content="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo6.gif">
+<meta property="og:image" content="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo7.gif">
+<meta property="og:image" content="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo8.gif">
+<meta property="og:updated_time" content="2016-01-29T01:42:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐一个聊天界面的UI">
+<meta name="twitter:description" content="MQChatViewControllerAn easy-to-customize messages UI Library for iOS.
+MQChatViewController 是一套易于定制的 iOS 开源聊天界面。
+为什么再写一套聊天 Library？之前在其他项目中用过 JSQMessagesViewController 和 UUChatTableView，两个开源项目都很好，但由于 J">
+  
+    <link rel="alternative" href="/atom.xml" title="杨晓龙" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4226557088,1275478253&amp;fm=116&amp;gp=0.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">杨晓龙</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">带着梦想去旅行，你会发现路上比终点更有意义</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/UIAlertController/" style="font-size: 10px;">UIAlertController</a> <a href="/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">杨晓龙</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4226557088,1275478253&amp;fm=116&amp;gp=0.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">杨晓龙</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">带着梦想去旅行，你会发现路上比终点更有意义</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-推荐一个聊天界面的UI" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/29/推荐一个聊天界面的UI/" class="article-date">
+  	<time datetime="2016-01-29T01:40:15.000Z" itemprop="datePublished">2016-01-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      推荐一个聊天界面的UI
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MQChatViewController">MQChatViewController</h1><p>An easy-to-customize messages UI Library for iOS.</p>
+<p><strong>MQChatViewController</strong> 是一套易于定制的 iOS 开源聊天界面。</p>
+<h2 id="为什么再写一套聊天_Library？">为什么再写一套聊天 Library？</h2><p>之前在其他项目中用过 <a href="https://github.com/jessesquires/JSQMessagesViewController" target="_blank" rel="external">JSQMessagesViewController</a> 和 <a href="https://github.com/ZhipingYang/UUChatTableView" target="_blank" rel="external">UUChatTableView</a>，两个开源项目都很好，但由于 JSQMessage 多文字气泡<a href="https://github.com/jessesquires/JSQMessagesViewController/issues/492" target="_blank" rel="external">卡顿的问题</a>迟迟得不到解决，UUChatView 增加自定义 Cell 并不是那么方便，所以决定写一套方便自定义的聊天界面。</p>
+<h2 id="Goal_-_目标">Goal - 目标</h2><p>该聊天界面的<strong>目标</strong>是，<strong>能让开发者很方便地进行定制</strong>。</p>
+<p>为了达成该目标，该 Library 做了如下设计：</p>
+<ul>
+<li>避免 MVC (Massive View Controller)，将 TableView、TableView 的 DataSource 和 ViewController 的数据管理都独立出去，ViewController 只充当 View 和 Model 的接口；</li>
+<li>为每一种 Cell 建立一个单独的类，以方便开发者进行修改和替换；</li>
+<li>所有的 Cell 都继承于一个基 Cell，这样开发者就不需要修改 DataSource 中的逻辑；</li>
+<li>所有的 CellModel 都必须满足一类协议方法，避免开发者过多的修改数据管理的逻辑；</li>
+<li>如果开发者不需要再自定义其他的 View，则不需要修改 ViewController；</li>
+</ul>
+<h2 id="Usage_-_使用方法">Usage - 使用方法</h2><p>最简单的使用方式，即初始化 <code>MQChatViewManager</code>，然后对界面进行配置，最后调用启动聊天界面接口即可；</p>
+<p>如果你想在某一个 ViewController，Push 一个聊天界面，可复制下面两行代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];&#10;[chatViewManager pushMQChatViewControllerInViewController:self];</span><br></pre></td></tr></table></figure></p>
+<p>有关聊天界面的配置，请见文档末尾的 <a href="#configuration---配置">Configuration</a> 小节.</p>
+<h2 id="Project_Structure_-_代码结构">Project Structure - 代码结构</h2><table>
+<thead>
+<tr>
+<th>文件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/tree/master/MQChatViewControllerDemo/MQChatViewController/ChatViewManager" target="_blank" rel="external">Config/</a></td>
+<td>对聊天界面进行配置的文件</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/blob/master/MQChatViewControllerDemo/MQChatViewController/ViewController/MQChatViewController.h" target="_blank" rel="external">Controllers/MQChatViewController</a></td>
+<td>界面的 Controller 类</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/blob/master/MQChatViewControllerDemo/MQChatViewController/ViewController/MQChatViewService.h" target="_blank" rel="external">Controllers/MQChatViewService</a></td>
+<td>界面的数据管理类，开发者可在该类中对接自己项目的 APIManager，来进行发送、收取消息等业务逻辑</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/blob/master/MQChatViewControllerDemo/MQChatViewController/ViewController/MQChatViewTableDataSource.h" target="_blank" rel="external">Controllers/MQChatViewTableDataSource</a></td>
+<td>消息的 TableView 的 DataSource，开发者不需要修改该类</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/blob/master/MQChatViewControllerDemo/MQChatViewController/ViewController/MQChatTableView.h" target="_blank" rel="external">Views/MQChatTableView</a></td>
+<td>消息的 TableView</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/tree/master/MQChatViewControllerDemo/MQChatViewController/ChatCells/CellModel" target="_blank" rel="external">TableCells/CellModel</a></td>
+<td>自定义 Cell 的 ViewModel，进行内容转换、布局计算等等</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/tree/master/MQChatViewControllerDemo/MQChatViewController/ChatCells/Cell" target="_blank" rel="external">TableCells/CellView</a></td>
+<td>自定义的 Cell，Cell 中的View直接使用在相应的 CellModel 中计算好的数据</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/tree/master/MQChatViewControllerDemo/MQChatViewController/ChatMessages" target="_blank" rel="external">MessageModels/</a></td>
+<td>该文件夹中的类是该 Library 会用到的 Message 实体</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/tree/master/MQChatViewControllerDemo/MQChatViewController/ChatUtil" target="_blank" rel="external">Utils/</a></td>
+<td>自定义的工具类</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/tree/master/MQChatViewControllerDemo/MQChatViewController/Views" target="_blank" rel="external">Views/</a></td>
+<td>界面中用到的自定义 View，如聊天 TableView、下拉刷新、输入框等等</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/tree/master/MQChatViewControllerDemo/MQChatViewController/MQChatViewBundle.bundle" target="_blank" rel="external">Assets/MQChatViewAsset.bundle</a></td>
+<td>资源文件，如图片、声音文件等，<strong>注意</strong>用户如果需要通过 MQChatViewManager 修改自定义元素图片，需要将图片放在该 bundle 中</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Meiqia/MQChatViewController/tree/master/MQChatViewControllerDemo/MQChatViewController/Vendors" target="_blank" rel="external">Vendors/</a></td>
+<td>第三方开源库</td>
+</tr>
+</tbody>
+</table>
+<p>注意：</p>
+<ul>
+<li>代码中的预处理是为了剥离美洽 SDK 的逻辑，如果你不是美洽 SDK 的用户，可将代码中所有 <code>#ifdef INCLUDE_MEIQIA_SDK</code> 中的逻辑换成自己的API逻辑，如下方：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifdef INCLUDE_MEIQIA_SDK&#10;//&#35843;&#29992;&#32654;&#27965;&#30340;API&#36923;&#36753;&#10;#endif</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果你是美洽 SDK 用户，则需要在 <code>MQChatViewConfig.h</code> 中，取消下面 define 的注释，以便打开美洽的 API：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#26159;&#21542;&#24341;&#20837;&#32654;&#27965;SDK&#10;//#define INCLUDE_MEIQIA_SDK</span><br></pre></td></tr></table></figure>
+<h2 id="Demo_-_示例">Demo - 示例</h2><p>开发者可参考 Demo 中的用法，对聊天界面进行配置，来进行基本的自定义功能，例如下面的示例：</p>
+<p><strong>开发者可这样 push 出聊天界面，效果如下：</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];&#10;   [chatViewManager pushMQChatViewControllerInViewController:self];</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo1.gif" alt="screenshot1"></p>
+<hr>
+<p><strong>开发者可这样 present 出聊天界面的模态视图，效果如下：</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];&#10;   [chatViewManager presentMQChatViewControllerInViewController:self];</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo2.gif" alt="screenshot2"></p>
+<hr>
+<p><strong>开发者可这样配置：底部按钮、修改气泡颜色、文字颜色、使头像设为圆形，效果如下：</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[chatViewManager setPhotoSenderImage:photoImage highlightedImage:photoHighlightedImage];&#10;   [chatViewManager setVoiceSenderImage:voiceImage highlightedImage:voiceHighlightedImage];&#10;   [chatViewManager setTextSenderImage:keyboardImage highlightedImage:keyboardHighlightedImage];&#10;   [chatViewManager setResignKeyboardImage:resightKeyboardImage highlightedImage:resightKeyboardHighlightedImage];&#10;   [chatViewManager setIncomingBubbleColor:[UIColor redColor]];&#10;   [chatViewManager setIncomingMessageTextColor:[UIColor whiteColor]];&#10;   [chatViewManager setOutgoingBubbleColor:[UIColor yellowColor]];&#10;   [chatViewManager setOutgoingMessageTextColor:[UIColor darkTextColor]];&#10;   [chatViewManager enableRoundAvatar:true];&#10;   [chatViewManager pushMQChatViewControllerInViewController:self];</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo3.gif" alt="screenshot3"></p>
+<hr>
+<p><strong>开发者可这样配置：是否支持发送语音、是否显示本机头像、修改气泡的样式，效果如下：</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[chatViewManager enableSendVoiceMessage:false];&#10;[chatViewManager enableClientAvatar:false];&#10;[chatViewManager setIncomingBubbleImage:incomingBubbleImage];&#10;[chatViewManager setOutgoingBubbleImage:outgoingBubbleImage];&#10;[chatViewManager setBubbleImageStretchInsets:UIEdgeInsetsMake(stretchPoint.y, stretchPoint.x, incomingBubbleImage.size.height-stretchPoint.y+0.5, stretchPoint.x)];&#10;[chatViewManager pushMQChatViewControllerInViewController:self];</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo4.gif" alt="screenshot4"></p>
+<hr>
+<p><strong>开发者可这样配置：增加可点击链接的正则表达式( Library 本身已支持多种格式链接，如未满足需求可增加)、增加欢迎语、是否开启消息声音、修改接受消息的铃声，效果如下：</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[chatViewManager setMessageLinkRegex:@&#34;((http[s]&#123;0,1&#125;|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]&#123;2,4&#125;)(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&#38;*+?:_/=&#60;&#62;]*)?)|([a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]&#123;2,4&#125;)(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&#38;*+?:_/=&#60;&#62;]*)?)&#34;];&#10;   [chatViewManager enableChatWelcome:true];&#10;   [chatViewManager setChatWelcomeText:@&#34;&#20320;&#22909;&#65292;&#35831;&#38382;&#26377;&#20160;&#20040;&#21487;&#20197;&#24110;&#21161;&#21040;&#24744;&#65311;&#34;];&#10;   [chatViewManager setIncomingMessageSoundFileName:@&#34;MQNewMessageRingStyle2.wav&#34;];&#10;   [chatViewManager enableMessageSound:true];&#10;   [chatViewManager pushMQChatViewControllerInViewController:self];</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo5.gif" alt="screenshot5"></p>
+<hr>
+<p><strong>如果 tableView 没有在底部，开发者可这样打开消息的提示，效果如下：</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[chatViewManager enableShowNewMessageAlert:true];&#10;   [chatViewManager pushMQChatViewControllerInViewController:self];</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo6.gif" alt="screenshot6"></p>
+<hr>
+<p><strong>开发者可这样配置：是否支持下拉刷新、修改下拉刷新颜色、增加导航栏标题，效果如下：</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[chatViewManager enableTopPullRefresh:true];&#10;   [chatViewManager setPullRefreshColor:[UIColor redColor]];&#10;   [chatViewManager setNavTitleText:@&#34;&#32654;&#27965;SDK&#34;];&#10;   [chatViewManager pushMQChatViewControllerInViewController:self];</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo7.gif" alt="screenshot7"></p>
+<hr>
+<p><strong>开发者可这样修改导航栏颜色、导航栏左右键、取消图片消息的mask效果，效果如下：</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[chatViewManager setNavTitleText:@&#34;&#32654;&#27965;SDK&#34;];&#10;   [chatViewManager setNavigationBarTintColor:[UIColor redColor]];&#10;   [chatViewManager setNavRightButton:rightButton];&#10;   [chatViewManager pushMQChatViewControllerInViewController:self];</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/ijinmao/MQChatViewController/blob/master/DemoGif/MQChatViewDemo8.gif" alt="screenshot8"></p>
+<h2 id="Customization_-_深度自定义">Customization - 深度自定义</h2><p><strong>3步添加自定义 Cell</strong></p>
+<ul>
+<li>添加自定义的 Cell 类，注意该 Cell 必须继承于 <code>MQChatBaseCell</code>;</li>
+<li>添加自定义 Cell 的 CellModel，注意 CellModel 必须实现 <code>MQCellModelProtocol</code> 协议中的方法；</li>
+<li>接下来你需要在 <code>MQChatViewService.m</code> 中，使用你自己的发送消息、接受消息的数据接口；注：你可以查看 <code>#ifdef INCLUDE_MEIQIA_SDK</code> 里面的内容，里面用到了我们数据层和UI层的中间接口 <code>MQServiceToViewInterface</code>；</li>
+</ul>
+<p><strong>替换加载图片的策略</strong></p>
+<ul>
+<li>该 Library 中没有使用<strong>图片/文件缓存</strong>等策略，加载图片的地方都新开了一个线程进行数据加载，如下方所示，开发者可根据自己的项目替换成不同的缓存策略，如 SDWebImage 等;</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#9;dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^&#123;&#10;#warning &#36825;&#37324;&#24320;&#21457;&#32773;&#21487;&#20197;&#20351;&#29992;&#33258;&#24049;&#30340;&#22270;&#29255;&#32531;&#23384;&#31574;&#30053;&#65292;&#22914;SDWebImage&#10;        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:message.userAvatarPath]];&#10;    &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Configuration_-_配置">Configuration - 配置</h2><p>如果你不想修改聊天界面的内部逻辑，<code>MQChatViewManager</code> 提供了很多接口，可以实现一些自定义设置。</p>
+<p>名词解释</p>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>incoming</td>
+<td>表示聊天对方</td>
+</tr>
+<tr>
+<td>outgoing</td>
+<td>表示本机用户</td>
+</tr>
+</tbody>
+</table>
+<p>下面列举一些常用的配置聊天界面的接口如下：(详细请见 <a href="https://github.com/ijinmao/MQChatViewController/blob/master/MQChatViewControllerDemo/MQChatViewController/ChatViewManager/MQChatViewManager.h" target="_blank" rel="external">MQChatViewManager.h</a>)<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/**&#10; * @brief &#22686;&#21152;&#28040;&#24687;&#20013;&#21487;&#36873;&#20013;&#30340;&#38142;&#25509;&#30340;&#27491;&#21017;&#34920;&#36798;&#24335;&#65292;&#29992;&#20110;&#21305;&#37197;&#28040;&#24687;&#65292;&#28385;&#36275;&#26465;&#20214;&#27573;&#33853;&#21487;&#20197;&#34987;&#29992;&#25143;&#28857;&#20987;&#12290;&#10; * @param numberRegex &#38142;&#25509;&#30340;&#27491;&#21017;&#34920;&#36798;&#24335;&#10; */&#10;- (void)setMessageLinkRegex:(NSString *)linkRegex;&#10;&#10;/**&#10; * @brief &#22686;&#21152;&#28040;&#24687;&#20013;&#21487;&#36873;&#20013;&#30340;email&#30340;&#27491;&#21017;&#34920;&#36798;&#24335;&#65292;&#29992;&#20110;&#21305;&#37197;&#28040;&#24687;&#65292;&#28385;&#36275;&#26465;&#20214;&#27573;&#33853;&#21487;&#20197;&#34987;&#29992;&#25143;&#28857;&#20987;&#12290;&#10; * @param emailRegex email&#30340;&#27491;&#21017;&#34920;&#36798;&#24335;&#10; */&#10;- (void)setMessageEmailRegex:(NSString *)emailRegex;&#10;&#10;/**&#10; * @brief &#35774;&#32622;&#25910;&#21040;&#28040;&#24687;&#30340;&#22768;&#38899;&#65307;&#10; * @param soundFileName &#22768;&#38899;&#25991;&#20214;&#10; */&#10;- (void)setIncomingMessageSoundFileName:(NSString *)soundFileName;&#10;&#10;/**&#10; * @brief &#26159;&#21542;&#25903;&#25345;&#21457;&#36865;&#35821;&#38899;&#28040;&#24687;&#65307;&#10; * @param enable YES:&#25903;&#25345;&#21457;&#36865;&#35821;&#38899;&#28040;&#24687; NO:&#19981;&#25903;&#25345;&#21457;&#36865;&#35821;&#38899;&#28040;&#24687;&#10; */&#10;- (void)enableSendVoiceMessage:(BOOL)enable;&#10;&#10;/**&#10; * @brief &#26159;&#21542;&#25903;&#25345;&#21457;&#36865;&#22270;&#29255;&#28040;&#24687;&#65307;&#10; * @param enable YES:&#25903;&#25345;&#21457;&#36865;&#22270;&#29255;&#28040;&#24687; NO:&#19981;&#25903;&#25345;&#21457;&#36865;&#22270;&#29255;&#28040;&#24687;&#10; */&#10;- (void)enableSendImageMessage:(BOOL)enable;&#10;&#10;/**&#10; * @brief &#26159;&#21542;&#25903;&#25345;&#23545;&#26041;&#22836;&#20687;&#30340;&#26174;&#31034;&#65307;&#10; * @param enable YES:&#25903;&#25345; NO:&#19981;&#25903;&#25345;&#10; */&#10;- (void)enableIncomingAvatar:(BOOL)enable;&#10;&#10;/**&#10; * @brief &#26159;&#21542;&#25903;&#25345;&#24403;&#21069;&#29992;&#25143;&#22836;&#20687;&#30340;&#26174;&#31034;&#10; *&#10; * @param enable YES:&#25903;&#25345; NO:&#19981;&#25903;&#25345;&#10; */&#10;- (void)enableOutgoingAvatar:(BOOL)enable;&#10;&#10;/**&#10; * @brief &#26159;&#21542;&#24320;&#21551;&#25509;&#21463;/&#21457;&#36865;&#28040;&#24687;&#30340;&#22768;&#38899;&#65307;&#10; * @param enable YES:&#24320;&#21551;&#22768;&#38899; NO:&#20851;&#38381;&#22768;&#38899;&#10; */&#10;- (void)enableMessageSound:(BOOL)enable;&#10;&#10;/**&#10; * @brief &#26159;&#21542;&#24320;&#21551;&#19979;&#25289;&#21047;&#26032;&#65288;&#39030;&#37096;&#21047;&#26032;&#65289;&#10; *&#10; * @param enable YES:&#25903;&#25345; NO:&#19981;&#25903;&#25345;&#10; */&#10;- (void)enableTopPullRefresh:(BOOL)enable;&#10;&#10;/**&#10; *  @brief &#35774;&#32622;&#19979;&#25289;/&#19978;&#25289;&#21047;&#26032;&#30340;&#39068;&#33394;&#10; *&#10; *  @param pullRefreshColor &#39068;&#33394;&#10; */&#10;- (void)setPullRefreshColor:(UIColor *)pullRefreshColor;&#10;&#10;/**&#10; * @brief &#35774;&#32622;&#21457;&#36865;&#36807;&#26469;&#30340;message&#30340;&#25991;&#23383;&#39068;&#33394;&#65307;&#10; * @param textColor &#25991;&#23383;&#39068;&#33394;&#10; */&#10;- (void)setIncomingMessageTextColor:(UIColor *)textColor;&#10;&#10;/**&#10; *  @brief &#35774;&#32622;&#21457;&#36865;&#36807;&#26469;&#30340;message&#27668;&#27873;&#39068;&#33394;&#10; *&#10; *  @param bubbleColor &#27668;&#27873;&#39068;&#33394;&#10; */&#10;- (void)setIncomingBubbleColor:(UIColor *)bubbleColor;&#10;&#10;/**&#10; * @brief &#35774;&#32622;&#21457;&#36865;&#20986;&#21435;&#30340;message&#30340;&#25991;&#23383;&#39068;&#33394;&#65307;&#10; * @param textColor &#25991;&#23383;&#39068;&#33394;&#10; */&#10;- (void)setOutgoingMessageTextColor:(UIColor *)textColor;&#10;&#10;/**&#10; *  @brief &#35774;&#32622;&#21457;&#36865;&#30340;message&#27668;&#27873;&#39068;&#33394;&#10; *&#10; *  @param bubbleColor &#27668;&#27873;&#39068;&#33394;&#10; */&#10;- (void)setOutgoingBubbleColor:(UIColor *)bubbleColor;</span><br></pre></td></tr></table></figure></p>
+<p>更多配置请见 <a href="https://github.com/Meiqia/MQChatViewController/blob/master/MQChatViewControllerDemo/MQChatViewController/Config/MQChatViewManager.h" target="_blank" rel="external">MQChatViewManager.h</a> 文件。</p>
+<h2 id="Localization_-_国际化/本地化">Localization - 国际化/本地化</h2><p>本项目支持<a href="https://github.com/Meiqia/MQChatViewController/blob/master/MQChatViewControllerDemo/MQChatViewController/Assets/MQChatViewAsset.bundle/en.lproj/MQChatViewController.strings" target="_blank" rel="external">英文</a>、<a href="https://github.com/Meiqia/MQChatViewController/blob/master/MQChatViewControllerDemo/MQChatViewController/Assets/MQChatViewAsset.bundle/zh-Hans.lproj/MQChatViewController.strings" target="_blank" rel="external">简体中文</a>和<a href="https://github.com/Meiqia/MQChatViewController/blob/master/MQChatViewControllerDemo/MQChatViewController/Assets/MQChatViewAsset.bundle/zh-Hant.lproj/MQChatViewController.strings" target="_blank" rel="external">繁体中文</a>，语言的定义在 Assets/MQChatViewAsset.bundle 中。</p>
+<p>如果开发者想增加多种语言，在 Assets/MQChatViewAsset.bundle 增加对应的语言项目即可。</p>
+<p><strong>注意</strong></p>
+<p>为了能正常识别App的系统语言，开发者的 App 的 info.plist 中需要有添加 Localizations 配置。如果需要支持英文、简体中文、繁体中文，info.plist 的 Souce Code 中需要有如下配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>CFBundleLocalizations<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">string</span>&gt;</span>zh_CN<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">string</span>&gt;</span>zh_TW<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">string</span>&gt;</span>en<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="To-do-list_-_待修复问题">To-do-list - 待修复问题</h2><p>由于 SDK 发布催的很紧，以下问题还没有得到妥善解决，但影响不大，所以还没有修复，开发者打怪得分后可提 PR ^.^：</p>
+<ul>
+<li>目前只支持单张图片全屏浏览，还不支持多张图片浏览；</li>
+<li>下拉刷新的瞬间，tableView 会跳跃一下，给人造成一种”卡了一下”的感觉；</li>
+<li>启动上拉刷新(底部刷新)，只显示了 loading 的 indicator，没有显示出 loading 的 path 效果；</li>
+<li>使用 TTTAttributedLabel，输入 emoji，text 会往下偏移；</li>
+<li>TTTAttributedLabel 中使用了 NSUnderlineColorAttributeName，导致不兼容 iOS 6，所以对于 iOS 7 以下的用户，消息气泡中的文字用的是 UILabel；所以对于 iOS 7 以下用户，没有文字选中的效果；</li>
+<li>开发者可在项目中搜索#warning，其中有一个 warning 是 TTTAttributedLabel 的 bug，开发者感兴趣可以解决一下；</li>
+</ul>
+<h2 id="Vendors_-_用到的第三方开源库">Vendors - 用到的第三方开源库</h2><p>以下是该 Library 用到的第三方开源代码，如果开发者的项目中用到了相同的库，需要删除一份，避免类名冲突：</p>
+<table>
+<thead>
+<tr>
+<th>第三方开源库</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rs/SDWebImage" target="_blank" rel="external">SDWebImage</a></td>
+<td>知名的异步图片下载和图片缓存库；</td>
+</tr>
+<tr>
+<td>VoiceConvert</td>
+<td>AMR 和 WAV 语音格式的互转；没找到出处，哪位童鞋找到来源后，请更新下文档~</td>
+</tr>
+<tr>
+<td><a href="https://github.com/molon/MLAudioRecorder" target="_blank" rel="external">MLAudioRecorder</a></td>
+<td>边录边转码，播放网络音频 Button (本地缓存)，实时语音。<strong>注意</strong>，由于该开源项目中的 <a href="https://github.com/molon/MLAudioRecorder/tree/master/MLRecorder/MLAudioRecorder/mp3_en_de/lame.framework" target="_blank" rel="external">lame.framework</a> 不支持 <code>bitCode</code> ，所以我们去掉了该项目中有关 MP3 的文件；</td>
+</tr>
+<tr>
+<td><a href="https://github.com/michaelhenry/MHFacebookImageViewer" target="_blank" rel="external">MHFacebookImageViewer</a></td>
+<td>图片查看器；<strong>注意</strong>，我们对该开源库进行了修改，以支持单击关闭Viewer等一些操作，该修改版本可见 <a href="https://github.com/ijinmao/MHFacebookImageViewer" target="_blank" rel="external">MHFacebookImageViewer</a>；</td>
+</tr>
+<tr>
+<td><a href="https://github.com/lyokato/FBDigitalFont" target="_blank" rel="external">FBDigitalFont</a></td>
+<td>类 LED 显示效果，用于本项目中的语音倒计时显示；</td>
+</tr>
+<tr>
+<td><a href="https://github.com/HansPinckaers/GrowingTextView" target="_blank" rel="external">GrowingTextView</a></td>
+<td>随文字改变高度的的 textView，用于本项目中的聊天输入框；</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TTTAttributedLabel/TTTAttributedLabel" target="_blank" rel="external">TTTAttributedLabel</a></td>
+<td>支持多种效果的 Lable，用于本项目中的聊天气泡的文字 Label；</td>
+</tr>
+<tr>
+<td><a href="https://github.com/wimagguc/ios-custom-alertview" target="_blank" rel="external">CustomIOSAlertView</a></td>
+<td>自定义的 AlertView，用于显示本项目的评价弹出框；<strong>注意</strong>，我们队该开源项目进行了修改，增加了按钮之间的分隔线条和判断当前是否已经有 AlertView 在显示，该修改版本可以见 <a href="https://github.com/ijinmao/ios-custom-alertview" target="_blank" rel="external">CustomIOSAlertView</a>；</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Hope_to_Help_Each_Other_-_互助">Hope to Help Each Other - 互助</h2><p>由于开发进度紧张，该项目写的较快，肯定有很多地方没有考虑周到，欢迎开发者指正和建议~</p>
+<p>如果该 Library 有帮助到你，或是你想完善此 Library，欢迎通过任何形式联系我们，一起讨论、一起互帮互助总是好的^.^</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/29/信鸽推送/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">信鸽推送</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="推荐一个聊天界面的UI" data-title="推荐一个聊天界面的UI" data-url="http://yoursite.com/2016/01/29/推荐一个聊天界面的UI/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 杨晓龙
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

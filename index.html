@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/UIAlertController/" style="font-size: 10px;">UIAlertController</a> <a href="/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a>
+						<a href="/tags/AFNetworking/" style="font-size: 10px;">AFNetworking</a> <a href="/tags/UIAlertController/" style="font-size: 10px;">UIAlertController</a> <a href="/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a>
 					</div>
 				</section>
 				
@@ -195,6 +195,134 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-AFNetworking-3-0迁移指南" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/02/AFNetworking-3-0迁移指南/" class="article-date">
+  	<time datetime="2016-02-02T04:40:52.000Z" itemprop="datePublished">2016-02-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/02/AFNetworking-3-0迁移指南/">AFNetworking 3.0迁移指南</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##AFNetworking 3.0</p>
+<pre><code>AFNetworking是一款在OS X和iOS下都令人喜爱的网络库。为了迎合iOS新版本的升级, AFNetworking在<span class="number">3.0</span>版本中删除了基于 <span class="built_in">NSURLConnection</span> API的所有支持。如果你的项目以前使用过这些API，建议您立即升级到基于 <span class="built_in">NSURLSession</span> 的API的AFNetworking的版本。本指南将引导您完成这个过程。
+</code></pre><p>本指南是为了引导使用AFNetworking 2.x升级到最新的版本API，以达到过渡的目的，并且解释了新增和更改的设计结构。</p>
+<p>##新设备要求: iOS 7, Mac OS X 10.9, watchOS 2, tvOS 9, &amp; Xcode 7</p>
+<p>AFNetworking 3.0正式支持的iOS 7， Mac OS X的10.9， watchOS 2 ， tvOS 9 和Xcode 7。如果你想使用AFNetworking在针对较旧版本的SDK项目，请检查README的兼容性信息。</p>
+<p>##NSURLConnection的API已废弃</p>
+<p>AFNetworking 1.0建立在NSURLConnection的基础API之上 ，AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API的选项。 AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。由于Xcode 7中，NSURLConnection的API已经正式被苹果弃用。虽然该API将继续运行，但将没有新功能将被添加，并且苹果已经通知所有基于网络的功能，以充分使NSURLSession向前发展。<br>AFNetworking 2.X将继续获得关键的隐患和安全补丁，但没有新的功能将被添加。Alamofire(Swift下的网络请求)软件基金会建议，所有的项目迁移到基于NSURLSession的API。</p>
+<p>###弃用的类</p>
+<p>下面的类已从AFNetworking 3.0中废弃：</p>
+<ul>
+<li>AFURLConnectionOperation</li>
+<li>AFHTTPRequestOperation</li>
+<li>AFHTTPRequestOperationManager</li>
+</ul>
+<p>###修改的类</p>
+<p>下面的类包含基于NSURLConnection的API的内部实现。他们已经被使用NSURLSession重构:</p>
+<ul>
+<li>UIImageView+AFNetworking</li>
+<li>UIWebView+AFNetworking</li>
+<li>UIButton+AFNetworking</li>
+</ul>
+<p>###迁移</p>
+<p>####AFHTTPRequestOperationManager 核心代码</p>
+<p>如果你以前使用 AFHTTPRequestOperationManager ， 你将需要迁移去使用 AFHTTPSessionManager。 以下的类在两者过渡间并没有变化：</p>
+<ul>
+<li>securityPolicy</li>
+<li>requestSerializer</li>
+<li>responseSerializer</li>
+</ul>
+<p>接下来举一个关于AFHTTPSessionManager的简单例子。注意HTTP网络请求返回的不再是AFHTTPRequestOperation, 修改成为了NSURLSessionTask，并且成功和失败的Block块中的参数也变更为了NSURLSessionTask，而不再是AFHTTPRequestOperation。</p>
+<p>####AFNetworking 2.x</p>
+<pre><code>AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+[manager GET:<span class="string">@"请求的url"</span> parameters:<span class="literal">nil</span> success:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) {
+    <span class="built_in">NSLog</span>(<span class="string">@"成功"</span>);
+} failure:^(AFHTTPRequestOperation *operation, <span class="built_in">NSError</span>*error) {
+    <span class="built_in">NSLog</span>(<span class="string">@"失败"</span>);
+}];
+</code></pre><p>####AFNetworking 3.0</p>
+<pre><code>AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+[session GET:<span class="string">@"请求的url"</span> parameters:<span class="literal">nil</span> success:^(<span class="built_in">NSURLSessionDataTask</span> *task, <span class="keyword">id</span> responseObject) {
+    <span class="built_in">NSLog</span>(<span class="string">@"成功"</span>);
+} failure:^(<span class="built_in">NSURLSessionDataTask</span> *task, <span class="built_in">NSError</span> *error) {
+    <span class="built_in">NSLog</span>(<span class="string">@"失败"</span>);        
+}];
+</code></pre><p>####AFHTTPRequestOperation 核心代码</p>
+<p>与NSURLConnection对象不同，每个共享应用范围的设置如会话管理、缓存策略、Cookie存储以及URL协议等，这些NSURLSession对象都可以单独进行配置。使用特定的配置来初始化会话，它可以发送任务来获取数据，并上传或下载文件。</p>
+<p>在AFNetworking 2.0中，使用AFHTTPRequestOperation，有可能创建一个没有额外开销的独立的网络请求来获取数据。NSURLSession则需要更多的开销，为了获得所要请求的数据。</p>
+<p>接下来，将要通过AFHTTPSessionManager创建一个对象，并创建一个任务和启动它。</p>
+<p>####AFNetworking 2.x</p>
+<pre><code><span class="built_in">NSURL</span> *URL = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@""</span>];
+<span class="built_in">NSURLRequest</span> *request = [<span class="built_in">NSURLRequest</span> requestWithURL:URL];
+AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+op<span class="variable">.responseSerializer</span> = [AFJSONResponseSerializer serializer];
+[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) {
+    <span class="built_in">NSLog</span>(<span class="string">@"JSON: %@"</span>, responseObject);
+} failure:^(AFHTTPRequestOperation *operation, <span class="built_in">NSError</span> *error) {
+    <span class="built_in">NSLog</span>(<span class="string">@"Error: %@"</span>, error);
+}];
+[[<span class="built_in">NSOperationQueue</span> mainQueue] addOperation:op];
+</code></pre><p>####AFNetworking 3.0</p>
+<pre><code><span class="built_in">NSURL</span> *URL = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@""</span>];
+AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+[manager GET:URL<span class="variable">.absoluteString</span> parameters:<span class="literal">nil</span> success:^(<span class="built_in">NSURLSessionTask</span> *task, <span class="keyword">id</span> responseObject) {
+    <span class="built_in">NSLog</span>(<span class="string">@"JSON: %@"</span>, responseObject);
+} failure:^(<span class="built_in">NSURLSessionTask</span> *operation, <span class="built_in">NSError</span> *error) {
+    <span class="built_in">NSLog</span>(<span class="string">@"Error: %@"</span>, error);
+}];
+</code></pre><p>####UIKit的迁移</p>
+<p>图片下载已经被重构，以遵循AlamofireImage架构与新的AFImageDownloader类。这个类的图片下载职责的代理人是UIButton与UIImageView的类目，并且提供了一些方法，在必要时可以自定义。类别中，下载远程图片的实际方法没有改变。</p>
+<p>UIWebView的类目被重构为使用AFHTTPSessionManager作为其网络请求。</p>
+<p>####UIAlertView的类目被废弃</p>
+<p>从AFNetworking 3.0后UIAlertView的类目因过时而被废弃。并没有提供UIAlertController类目的计划，因为这是应用程序应处理的逻辑，而不是这个库。</p>
+<p>原文链接: <a href="https://github.com/AFNetworking/AFNetworking/wiki/AFNetworking-3.0-Migration-Guide#new-requirements-ios-7-mac-os-x-109-watchos-2-tvos-9--xcode-7" target="_blank" rel="external">AFNetworking 3.0</a></p>
+<p>纯属个人翻译，如有错误，还请纠正。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AFNetworking/">AFNetworking</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-推荐一个聊天界面的UI" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1109,69 +1237,6 @@
       
       
 
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-cocoaPods的安装和使用" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/01/03/cocoaPods的安装和使用/" class="article-date">
-  	<time datetime="2015-01-03T14:44:23.000Z" itemprop="datePublished">2015-01-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/03/cocoaPods的安装和使用/">CocoaPods的安装和使用</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当你开发iOS应用时，会经常使用到很多第三方开源类库，比如JSONKit，AFNetWorking等等。可能某个类库又用到其他类库，所以要使用它，必须得另外下载其他类库，而其他类库又用到其他类库，“子子孙孙无穷尽也”，这也许是比较特殊的情况。总之小编的意思就是，手动一个个去下载所需类库十分麻烦。另外一种常见情况是，你项目中用到的类库有更新，你必须得重新下载新版本，重新加入到项目中，十分麻烦。如果能有什么工具能解决这些恼人的问题，那将“善莫大焉”。所以，你需要 CocoaPods。</p>
-<p><img src="http://i5.tietuku.com/cd45c917efe09a85.jpg" alt=""></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cocoaPods/">cocoaPods</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/01/03/cocoaPods的安装和使用/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>

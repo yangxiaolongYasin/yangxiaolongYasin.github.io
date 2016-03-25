@@ -196,6 +196,107 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-三个月开发心得" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/25/三个月开发心得/" class="article-date">
+  	<time datetime="2016-03-25T08:13:54.000Z" itemprop="datePublished">2016-03-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/25/三个月开发心得/">三个月开发心得</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>//隐藏 </p>
+<pre><code><span class="keyword">self</span><span class="variable">.tableView</span><span class="variable">.showsVerticalScrollIndicator</span> = <span class="literal">NO</span>;
+</code></pre><p>//修改颜色    </p>
+<pre><code><span class="keyword">self</span><span class="variable">.tableView</span><span class="variable">.indicatorStyle</span>=<span class="built_in">UIScrollViewIndicatorStyleWhite</span>;
+
+cell<span class="variable">.accessoryType</span> = <span class="built_in">UITableViewCellAccessoryDisclosureIndicator</span>; <span class="comment">//显示最右边的箭头 </span>
+</code></pre><p>//tableview没有数据的时候不显示线</p>
+<pre><code>_tableView.tableFooterView = <span class="comment">[<span class="comment">[UIView alloc]</span> init]</span>;
+</code></pre><p>//隐藏cell的那条线</p>
+<pre><code>tableView.separatorStyle = UITableViewCellSeparatorStyleNone<span class="comment">;</span>
+</code></pre><p>//取消点击选中效果</p>
+<pre><code><span class="tag">-</span> (void)<span class="tag">tableView</span>:(UITableView *)<span class="tag">tableView</span> <span class="tag">didSelectRowAtIndexPath</span>:(NSIndexPath *)<span class="tag">indexPath</span>
+{
+<span class="attr_selector">[tableView deselectRowAtIndexPath:indexPath animated:YES]</span>;
+}
+</code></pre><p>// 隐藏item</p>
+<pre><code><span class="keyword">self</span>.navigationItem.leftBarButtonItem = <span class="literal">nil</span>; 
+</code></pre><p>有时候有些操作是防止用户在一次响应结束中再响应下一个。但有些测试用户就要猛点，狂点。像这种恶意就要进行防止。<br>当然有些异步操作时，可以在调用前enable 掉。等CallBACK 后再enable起来。过程中按钮是不能点的。<br>1、可以使用：</p>
+<pre><code>- (<span class="keyword">void</span>) timeEnough
+{
+<span class="built_in">UIButton</span> *btn=(<span class="built_in">UIButton</span>*)[<span class="keyword">self</span><span class="variable">.view</span> viewWithTag:<span class="number">33</span>];
+btn<span class="variable">.selected</span>=<span class="literal">NO</span>;
+}
+- (<span class="keyword">void</span>) btnDone:(<span class="built_in">UIButton</span>*)btn
+{
+<span class="keyword">if</span>(btn<span class="variable">.selected</span>) <span class="keyword">return</span>;
+btn<span class="variable">.selected</span>=<span class="literal">YES</span>;
+[<span class="keyword">self</span> performSelector:<span class="keyword">@selector</span>(timeEnough) withObject:<span class="literal">nil</span> afterDelay:<span class="number">3.0</span>]; <span class="comment">//使用延时进行限制。</span>
+<span class="comment">//to do something.</span>
+｝
+</code></pre><p>2、个人觉得这种方法更为好用些。</p>
+<pre><code><span class="tag">-</span> (void)<span class="tag">todoSomething</span>:(id)<span class="tag">sender</span>
+{
+<span class="comment">//在这里做按钮的想做的事情。</span>
+}
+<span class="tag">-</span> (void)<span class="tag">starButtonClicked</span>:(id)<span class="tag">sender</span>
+{
+<span class="comment">//先将未到时间执行前的任务取消。</span>
+<span class="attr_selector">[[self class]</span> <span class="tag">cancelPreviousPerformRequestsWithTarget</span><span class="pseudo">:self</span> <span class="tag">selector</span>:@<span class="tag">selector</span>(<span class="attribute">todoSomething</span>:) <span class="tag">object</span><span class="pseudo">:sender</span>];
+<span class="attr_selector">[self performSelector:@selector(todoSomething:) withObject:sender afterDelay:0.2f]</span>;
+}
+</code></pre><p>对于第二种方法，快速点击Ｎ次，只要每次间隔在0.2秒内的都不响应操作，等到停下点击到达0.2秒后再执行。所以按照自己的需要设置响应时间，狂点吧。只响应一次。。</p>
+<p>在解决这个问题的时候，网上查了一下，都是这篇文章。还被转载了好多次。<br>我试了试，第二种方法是有问题的，事实上0.2秒发出响应后再到事件的完成中间依然可以点击产生重复响应。等于延时了0.2秒再犯错。<br>第一种倒是可以的，只是延时总是觉得不是很合理，我的事件是推出一个视图，所以我把btn.selected=NO;放在了will appear里面。</p>
+<p>// 防止collection多次响应事件</p>
+<pre><code>[collectionView <span class="string">setUserInteractionEnabled:</span>NO];
+[collectionView <span class="string">performSelector:</span><span class="annotation">@selector</span>(<span class="string">setUserInteractionEnabled:</span>)
+<span class="label">                     withObject:</span>[NSNumber <span class="string">numberWithBool:</span>YES] <span class="string">afterDelay:</span><span class="number">0.5</span>f];
+</code></pre><p>//取得本地程序的版本号 </p>
+<pre><code>NSDictionary *<span class="built_in">local</span>Dic =[[NSBundle mainBundle]     infoDictionary];
+
+NSString *<span class="built_in">local</span>Version =[<span class="built_in">local</span>Dic     objectForKey:@<span class="string">"CFBundleShortVersionString"</span>];
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-AFNetworking-3-0迁移指南" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1173,69 +1274,6 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
       
       
 
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-cocoaPods的安装和使用" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/01/03/cocoaPods的安装和使用/" class="article-date">
-  	<time datetime="2015-01-03T14:44:23.000Z" itemprop="datePublished">2015-01-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/03/cocoaPods的安装和使用/">CocoaPods的安装和使用</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当你开发iOS应用时，会经常使用到很多第三方开源类库，比如JSONKit，AFNetWorking等等。可能某个类库又用到其他类库，所以要使用它，必须得另外下载其他类库，而其他类库又用到其他类库，“子子孙孙无穷尽也”，这也许是比较特殊的情况。总之小编的意思就是，手动一个个去下载所需类库十分麻烦。另外一种常见情况是，你项目中用到的类库有更新，你必须得重新下载新版本，重新加入到项目中，十分麻烦。如果能有什么工具能解决这些恼人的问题，那将“善莫大焉”。所以，你需要 CocoaPods。</p>
-<p><img src="http://i5.tietuku.com/cd45c917efe09a85.jpg" alt=""></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cocoaPods/">cocoaPods</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/01/03/cocoaPods的安装和使用/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>

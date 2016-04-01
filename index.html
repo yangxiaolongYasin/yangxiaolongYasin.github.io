@@ -196,6 +196,207 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-AsyncSocket" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/01/AsyncSocket/" class="article-date">
+  	<time datetime="2016-04-01T07:50:46.000Z" itemprop="datePublished">2016-04-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/01/AsyncSocket/">AsyncSocket</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原    iOS学习之Socket使用简明教程－ AsyncSocket</p>
+<p>如果需要在项目中像QQ微信一样做到即时通讯，必须使用socket通讯，本人也是刚学习，分享一下，有什么不对的地方希望大家指正</p>
+<p>ios原生的socket用起来不是很直观，所以我用的是AsyncSocket这个第三方库，对socket的封装比较好，只是好像没有带外传输（out—of-band） 如果你的服务器需要发送带外数据，可能得想下别的办法</p>
+<p>环境</p>
+<p><a href="https://github.com/robbiehanson/CocoaAsyncSocket" target="_blank" rel="external">下载AsyncSocket</a>类库，将RunLoop文件夹下的AsyncSocket.h, AsyncSocket.m, AsyncUdpSocket.h, AsyncUdpSocket.m 文件拷贝到自己的project中</p>
+<p>添加CFNetwork.framework, 在使用socket的文件头</p>
+<p>#import <sys socket.h=""></sys></p>
+<p>#import <netinet in.h=""></netinet></p>
+<p>#import <arpa inet.h=""></arpa></p>
+<p>#import <unistd.h><br>使用</unistd.h></p>
+<ol>
+<li>socket 连接</li>
+</ol>
+<p>即时通讯最大的特点就是实时性，基本感觉不到延时或是掉线，所以必须对socket的连接进行监视与检测，在断线时进行重新连接，如果用户退出登录，要将socket手动关闭，否则对服务器会造成一定的负荷。</p>
+<p>一般来说，一个用户（对于ios来说也就是我们的项目中）只能有一个正在连接的socket，所以这个socket变量必须是全局的，这里可以考虑使用单例或是AppDelegate进行数据共享，本文使用单例。如果对一个已经连接的socket对象再次进行连接操作，会抛出异常（不可对已经连接的socket进行连接）程序崩溃，所以在连接socket之前要对socket对象的连接状态进行判断</p>
+<p>使用socket进行即时通讯还有一个必须的操作，即对服务器发送心跳包，每隔一段时间对服务器发送长连接指令（指令不唯一，由服务器端指定，包括使用socket发送消息，发送的数据和格式都是由服务器指定），如果没有收到服务器的返回消息，AsyncSocket会得到失去连接的消息，我们可以在失去连接的回调方法里进行重新连接。</p>
+<p>先创建一个单例，命名为Singleton</p>
+<p>Singleton.h</p>
+<p>// Singleton.h</p>
+<p>#import “AsyncSocket.h”</p>
+<p>#define DEFINE_SHARED_INSTANCE_USING_BLOCK(block) \<br>    static dispatch_once_t onceToken = 0; \<br>    __strong static id sharedInstance = nil; \<br>    dispatch_once(&amp;onceToken, ^{ \<br>    sharedInstance = block(); \<br>    }); \<br>    return sharedInstance; \</p>
+<pre><code><span class="constant">@interface</span> <span class="built_in">Singleton</span> : NSObject
+
++ (<span class="built_in">Singleton</span> *)sharedInstance<span class="comment">;</span>
+
+<span class="constant">@end</span>
+<span class="built_in">Singleton</span>.m
+
++(<span class="built_in">Singleton</span> *) sharedInstance
+{
+
+<span class="keyword">static</span> <span class="built_in">Singleton</span> *sharedInstace = nil<span class="comment">;</span>
+<span class="keyword">static</span> dispatch_once_t onceToken<span class="comment">;</span>
+dispatch_once(&amp;onceToken, ^{
+
+sharedInstace = [[self alloc] init]<span class="comment">;</span>
+})<span class="comment">;</span>
+
+<span class="keyword">return</span> sharedInstace<span class="comment">;</span>
+}
+</code></pre><p>这样一个单例就创建好了</p>
+<p>在.h文件中生命socket变量</p>
+<pre><code><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) AsyncSocket    *socket;       <span class="comment">// socket</span>
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>  ) <span class="built_in">NSString</span>       *socketHost;   <span class="comment">// socket的Host</span>
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">UInt16</span>         socketPort;    <span class="comment">// socket的prot</span>
+</code></pre><p>下面是连接，心跳，失去连接后重连</p>
+<p>连接(长连接)</p>
+<p>在.h文件中声明方法，并声明代理<asyncsocketdelegate></asyncsocketdelegate></p>
+<pre><code>-(<span class="keyword">void</span>)socketConnectHost;<span class="comment">// socket连接</span>
+</code></pre><p>在.m中实现，连接时host与port都是由服务器指定，如果不是自己写的服务器，请与服务器端开发人员交流</p>
+<p>// socket连接</p>
+<pre><code>-(void)socketConnectHost{
+<span class="variable">self</span>.socket    = [[AsyncSocket alloc] initWithDelegate:<span class="variable">self</span>];
+
+NSError *<span class="built_in">error</span> = nil;
+
+[<span class="variable">self</span>.socket connectToHost:<span class="variable">self</span>.socketHost onPort:<span class="variable">self</span>.socketPort withTimeout:<span class="number">3</span> <span class="built_in">error</span>:&amp;<span class="built_in">error</span>];
+
+}
+</code></pre><p>心跳</p>
+<p>心跳通过计时器来实现 在singleton.h中声明一个定时器</p>
+<pre><code><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) <span class="built_in">NSTimer</span>        *connectTimer; <span class="comment">// 计时器</span>
+</code></pre><p>在.m中实现连接成功回调方法，并在此方法中初始化定时器，发送心跳在后文向服务器发送数据时说明</p>
+<p>#pragma mark  - 连接成功回调<br>    -(void)onSocket:(AsyncSocket <em>)sock didConnectToHost:(NSString  </em>)host port:(UInt16)port<br>    {<br>    NSLog(@”socket连接成功”);</p>
+<pre><code><span class="comment">// 每隔30s像服务器发送心跳包</span>
+<span class="keyword">self</span><span class="variable">.connectTimer</span> = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">30</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(longConnectToSocket) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];<span class="comment">// 在longConnectToSocket方法中进行长连接需要向服务器发送的讯息</span>
+
+[<span class="keyword">self</span><span class="variable">.connectTimer</span> fire];
+
+}
+</code></pre><ol>
+<li>socket 断开连接与重连</li>
+</ol>
+<p>断开连接</p>
+<p>失去连接有几种情况，服务器断开，用户主动cut，还可能有如QQ其他设备登录被掉线的情况，不管那种情况，我们都能收到socket回调方法返回给我们的讯息，如果是用户退出登录或是程序退出而需要手动cut，我们在cut前对socket的userData赋予一个值来标记为用户退出，这样我们可以在收到断开信息时判断究竟是什么原因导致的掉线</p>
+<p>在.h文件中声明一个枚举类型</p>
+<pre><code><span class="class"><span class="keyword">enum</span>{</span>
+<span class="constant">SocketOfflineByServer</span>,<span class="regexp">//</span> 服务器掉线，默认为<span class="number">0</span>
+<span class="constant">SocketOfflineByUser</span>,  <span class="regexp">//</span> 用户主动cut
+};
+</code></pre><p>声明断开连接方法</p>
+<pre><code>-(<span class="keyword">void</span>)cutOffSocket; <span class="comment">// 断开socket连接</span>
+</code></pre><p>.m</p>
+<p>// 切断socket</p>
+<pre><code>-(<span class="literal">void</span>)cutOffSocket{
+
+<span class="built_in">self</span><span class="built_in">.</span>socket<span class="built_in">.</span>userData = SocketOfflineByUser;<span class="comment">// 声明是由用户主动切断</span>
+
+<span class="preprocessor">[</span><span class="built_in">self</span><span class="built_in">.</span>connectTimer invalidate<span class="preprocessor">]</span><span class="markup">;
+
+</span><span class="preprocessor">[</span><span class="built_in">self</span><span class="built_in">.</span>socket disconnect<span class="preprocessor">]</span><span class="markup">;
+}</span>
+</code></pre><p>重连</p>
+<p>实现代理方法</p>
+<pre><code>-(<span class="keyword">void</span>)onSocketDidDisconnect:(AsyncSocket *)sock
+{
+<span class="built_in">NSLog</span>(<span class="string">@"sorry the connect is failure %ld"</span>,sock<span class="variable">.userData</span>);
+<span class="keyword">if</span> (sock<span class="variable">.userData</span> == SocketOfflineByServer) {
+    <span class="comment">// 服务器掉线，重连</span>
+    [<span class="keyword">self</span> socketConnectHost];
+}
+<span class="keyword">else</span> <span class="keyword">if</span> (sock<span class="variable">.userData</span> == SocketOfflineByUser) {
+    <span class="comment">// 如果由用户断开，不进行重连</span>
+    <span class="keyword">return</span>;
+}
+
+}
+</code></pre><ol>
+<li>socket 发送与接收数据</li>
+</ol>
+<p>发送数据<br>我们补充上文心跳连接未完成的方法</p>
+<p>// 心跳连接</p>
+<pre><code>-(<span class="typename">void</span>)longConnectToSocket{
+
+<span class="comment">// 根据服务器要求发送固定格式的数据，假设为指令@"longConnect"，但是一般不会是这么简单的指令</span>
+
+NSString *longConnect = @<span class="string">"longConnect"</span>;
+
+NSData   *dataStream  = [longConnect <span class="string">dataUsingEncoding:</span>NSUTF8StringEncoding];
+
+[self.socket <span class="string">writeData:</span>dataStream <span class="string">withTimeout:</span><span class="number">1</span> <span class="string">tag:</span><span class="number">1</span>];
+
+}
+</code></pre><p>socket发送数据是以栈的形式存放，所有数据放在一个栈中，存取时会出现粘包的现象，所以很多时候服务器在收发数据时是以先发送内容字节长度，再发送内容的形式，得到数据时也是先得到一个长度，再根据这个长度在栈中读取这个长度的字节流，如果是这种情况，发送数据时只需在发送内容前发送一个长度，发送方法与发送内容一样，假设长度为8</p>
+<pre><code>NSData   *dataStream  = [@<span class="number">8</span> dataUsingEncodin<span class="variable">g:NSUTF8StringEncoding</span>];
+
+[self.socket writeDat<span class="variable">a:dataStream</span> withTimeou<span class="variable">t:1</span> <span class="keyword">ta</span><span class="variable">g:1</span>];
+</code></pre><p>接收数据<br>为了能时刻接收到socket的消息，我们在长连接方法中进行读取数据</p>
+<pre><code>[self.socket readDataWithTimeou<span class="variable">t:30</span> <span class="keyword">ta</span><span class="variable">g:0</span>];
+</code></pre><p>如果得到数据，会调用回调方法</p>
+<pre><code>-(<span class="typename">void</span>)<span class="string">onSocket:</span>(AsyncSocket *)sock <span class="string">didReadData:</span>(NSData *)data <span class="string">withTag:</span>(<span class="typename">long</span>)tag
+{
+<span class="comment">// 对得到的data值进行解析与转换即可</span>
+
+[self.socket <span class="string">readDataWithTimeout:</span><span class="number">30</span> <span class="string">tag:</span><span class="number">0</span>];
+
+}
+</code></pre><ol>
+<li>简单使用说明</li>
+</ol>
+<p>我们在用户登录后的第一个界面进行socket的初始化连接操作，在得到数据后，将所需要显示的数据放在singleton中，对变量进行监听后做出相应的操作即可，延伸起来比较复杂，没有真实数据也不太方便说明，大家自己进行探索吧，有问题请在下方留言</p>
+<pre><code>[<span class="name">Singleton</span> <span class="atom">sharedInstance</span>].<span class="atom">socketHost</span> = @<span class="string">"192.186.100.21"</span>;// <span class="atom">host</span>设定
+[<span class="name">Singleton</span> <span class="atom">sharedInstance</span>].<span class="atom">socketPort</span> = <span class="number">10045</span>;// <span class="atom">port</span>设定
+
+// 在连接前先进行手动断开
+[<span class="name">Singleton</span> <span class="atom">sharedInstance</span>].<span class="atom">socket</span>.<span class="atom">userData</span> = <span class="name">SocketOfflineByUser</span>;
+[[<span class="name">Singleton</span> <span class="atom">sharedInstance</span>] <span class="atom">cutOffSocket</span>];
+
+// 确保断开后再连，如果对一个正处于连接状态的<span class="atom">socket</span>进行连接，会出现崩溃
+[<span class="name">Singleton</span> <span class="atom">sharedInstance</span>].<span class="atom">socket</span>.<span class="atom">userData</span> = <span class="name">SocketOfflineByServer</span>;
+[[<span class="name">Singleton</span> <span class="atom">sharedInstance</span>] <span class="atom">socketConnectHost</span>];
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-三个月开发心得" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1223,57 +1424,6 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         <p class="article-more-link">
           <a  href="/2015/11/30/UIAlertController使用方法/#more">more >></a>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-刚刚开始" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/29/刚刚开始/" class="article-date">
-  	<time datetime="2015-11-29T08:26:25.000Z" itemprop="datePublished">2015-11-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/29/刚刚开始/">刚刚开始</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我是一名iOS工程师，由于工作原因，一直没有时间来更新博客，现在有时间写博客了，算是对自己掌握的知识整理与回顾，希望能给人带来方便。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
       
       <div class="clearfix"></div>
     </div>

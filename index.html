@@ -275,7 +275,7 @@
   
     <div class="article-meta">
       <a href="/2016/04/01/UITableView的平滑滚动/" class="article-date">
-  	<time datetime="2016-04-01T09:26:06.000Z" itemprop="datePublished">2016-04-01</time>
+  	<time datetime="2016-04-01T15:49:53.000Z" itemprop="datePublished">2016-04-01</time>
 </a>
     </div>
   
@@ -288,7 +288,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/01/UITableView的平滑滚动/">UITableView的平滑滚动</a>
+      <a class="article-title" href="/2016/04/01/UITableView的平滑滚动/">UITableView的完美平滑滚动</a>
     </h1>
   
 
@@ -297,8 +297,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>title: UITableView的完美平滑滚动<br>date: 2016-04-01 23:49:53</p>
-<h2 id="tags:">tags:</h2><p>闲话少叙，直接来干货<br>第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的 cell/header/footer 类，且只初始化了一次，并返回给 UITableView 来重用该对象。</p>
+        <p>闲话少叙，直接来干货<br>第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的 cell/header/footer 类，且只初始化了一次，并返回给 UITableView 来重用该对象。</p>
 <p>我觉得在这里没必要做详细的回顾，因为重用 cell 的工作流程在文档有详细描述。</p>
 <p>但有一点需要重视：需要在 UITableView 的数据源中实现 tableView:cellForRowAtIndexPath: 方法，在方法中调用每个 cell 并应尽可能让方法快速运行。所以你必须尽可能迅速地返回重用的 cell 对象。</p>
 <p>在该方法中，不要进行数据绑定（perform data binding），因为在当前在界面上还没有 cell。为此，你可以在 UITableView 的委托（代理）中使用 tableView:willDisplayCell:forRowAtIndexPath: 方法，该方法会在 UITableView 的 bounds 里显示 cell 之前被准确调用。</p>

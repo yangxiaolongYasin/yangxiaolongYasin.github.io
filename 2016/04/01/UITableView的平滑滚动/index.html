@@ -3,14 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>UITableView的完美平滑滚动 | 杨晓龙</title>
+  <title>UITableView的平滑滚动 | 杨晓龙</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="闲话少叙，直接来干货第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的 cell/header/footer 类，且只初始化了一次，并返回给 UITableView 来重用该对象。">
+  <meta name="description" content="title: UITableView的完美平滑滚动date: 2016-04-01 23:49:53
+tags:闲话少叙，直接来干货第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UITableView的完美平滑滚动">
-<meta property="og:url" content="http://yoursite.com/2016/04/01/UITableView的完美平滑滚动/index.html">
+<meta property="og:title" content="UITableView的平滑滚动">
+<meta property="og:url" content="http://yoursite.com/2016/04/01/UITableView的平滑滚动/index.html">
 <meta property="og:site_name" content="杨晓龙">
-<meta property="og:description" content="闲话少叙，直接来干货第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的 cell/header/footer 类，且只初始化了一次，并返回给 UITableView 来重用该对象。">
+<meta property="og:description" content="title: UITableView的完美平滑滚动date: 2016-04-01 23:49:53
+tags:闲话少叙，直接来干货第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的">
 <meta property="og:image" content="http://ww1.sinaimg.cn/mw690/6941baebgw1f2dtex3kmkj20xc0upn94.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/mw690/6941baebgw1f2dtexoytuj20xc02dt9z.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/mw690/6941baebgw1f2dto8ya5bj20dw0opq6q.jpg">
@@ -22,10 +24,11 @@
 <meta property="og:image" content="http://ww4.sinaimg.cn/mw690/6941baebgw1f2dtnvzbt2j20go0tmn17.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/mw690/6941baebgw1f2dtnudb8zj20go0tmaed.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/mw690/6941baebgw1f2dtntnqklj20go0tmn1j.jpg">
-<meta property="og:updated_time" content="2016-04-05T09:06:53.000Z">
+<meta property="og:updated_time" content="2016-04-05T09:26:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UITableView的完美平滑滚动">
-<meta name="twitter:description" content="闲话少叙，直接来干货第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的 cell/header/footer 类，且只初始化了一次，并返回给 UITableView 来重用该对象。">
+<meta name="twitter:title" content="UITableView的平滑滚动">
+<meta name="twitter:description" content="title: UITableView的完美平滑滚动date: 2016-04-01 23:49:53
+tags:闲话少叙，直接来干货第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的">
   
     <link rel="alternative" href="/atom.xml" title="杨晓龙" type="application/atom+xml">
   
@@ -206,11 +209,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-UITableView的完美平滑滚动" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-UITableView的平滑滚动" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/01/UITableView的完美平滑滚动/" class="article-date">
-  	<time datetime="2016-04-01T15:49:53.000Z" itemprop="datePublished">2016-04-01</time>
+      <a href="/2016/04/01/UITableView的平滑滚动/" class="article-date">
+  	<time datetime="2016-04-01T09:26:06.000Z" itemprop="datePublished">2016-04-01</time>
 </a>
     </div>
   
@@ -223,7 +226,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      UITableView的完美平滑滚动
+      UITableView的平滑滚动
     </h1>
   
 
@@ -239,7 +242,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>闲话少叙，直接来干货<br>第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的 cell/header/footer 类，且只初始化了一次，并返回给 UITableView 来重用该对象。</p>
+        <p>title: UITableView的完美平滑滚动<br>date: 2016-04-01 23:49:53</p>
+<h2 id="tags:">tags:</h2><p>闲话少叙，直接来干货<br>第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的 cell/header/footer 类，且只初始化了一次，并返回给 UITableView 来重用该对象。</p>
 <p>我觉得在这里没必要做详细的回顾，因为重用 cell 的工作流程在文档有详细描述。</p>
 <p>但有一点需要重视：需要在 UITableView 的数据源中实现 tableView:cellForRowAtIndexPath: 方法，在方法中调用每个 cell 并应尽可能让方法快速运行。所以你必须尽可能迅速地返回重用的 cell 对象。</p>
 <p>在该方法中，不要进行数据绑定（perform data binding），因为在当前在界面上还没有 cell。为此，你可以在 UITableView 的委托（代理）中使用 tableView:willDisplayCell:forRowAtIndexPath: 方法，该方法会在 UITableView 的 bounds 里显示 cell 之前被准确调用。</p>
@@ -359,7 +363,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="UITableView的完美平滑滚动" data-title="UITableView的完美平滑滚动" data-url="http://yoursite.com/2016/04/01/UITableView的完美平滑滚动/"></div>
+	<div class="ds-thread" data-thread-key="UITableView的平滑滚动" data-title="UITableView的平滑滚动" data-url="http://yoursite.com/2016/04/01/UITableView的平滑滚动/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

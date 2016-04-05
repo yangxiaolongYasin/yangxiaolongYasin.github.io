@@ -15,7 +15,7 @@ ios原生的socket用起来不是很直观，所以我用的是AsyncSocket这个
 <meta property="og:description" content="原    iOS学习之Socket使用简明教程－ AsyncSocket
 如果需要在项目中像QQ微信一样做到即时通讯，必须使用socket通讯，本人也是刚学习，分享一下，有什么不对的地方希望大家指正
 ios原生的socket用起来不是很直观，所以我用的是AsyncSocket这个第三方库，对socket的封装比较好，只是好像没有带外传输（out—of-band） 如果你的服务器需要发送带外数据，可">
-<meta property="og:updated_time" content="2016-04-01T07:59:46.000Z">
+<meta property="og:updated_time" content="2016-04-01T08:03:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AsyncSocket">
 <meta name="twitter:description" content="原    iOS学习之Socket使用简明教程－ AsyncSocket
@@ -240,10 +240,11 @@ ios原生的socket用起来不是很直观，所以我用的是AsyncSocket这个
 <p>环境</p>
 <p><a href="https://github.com/robbiehanson/CocoaAsyncSocket" target="_blank" rel="external">下载AsyncSocket</a>类库，将RunLoop文件夹下的AsyncSocket.h, AsyncSocket.m, AsyncUdpSocket.h, AsyncUdpSocket.m 文件拷贝到自己的project中</p>
 <p>添加CFNetwork.framework, 在使用socket的文件头</p>
-<p>#import <sys socket.h=""></sys></p>
-<p>#import <netinet in.h=""></netinet></p>
-<p>#import <arpa inet.h=""></arpa></p>
-<p>#import <unistd.h><br>使用</unistd.h></p>
+<pre><code><span class="id">#import</span> &lt;sys/socket.h&gt;
+<span class="id">#import</span> &lt;netinet/<span class="keyword">in</span>.h&gt;
+<span class="id">#import</span> &lt;arpa/inet.h&gt;
+<span class="id">#import</span> &lt;unistd.h&gt;
+</code></pre><p>使用</p>
 <ol>
 <li>socket 连接</li>
 </ol>
@@ -393,6 +394,15 @@ NSData   *dataStream  = [longConnect <span class="string">dataUsingEncoding:</sp
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/04/05/重写方法支持右滑返回/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          重写方法支持右滑返回
+        
+      </div>
+    </a>
   
   
     <a href="/2016/03/25/三个月开发心得/" id="article-nav-older" class="article-nav-link-wrap">

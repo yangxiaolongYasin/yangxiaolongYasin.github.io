@@ -196,6 +196,81 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-重写方法支持右滑返回" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/05/重写方法支持右滑返回/" class="article-date">
+  	<time datetime="2016-04-05T01:34:01.000Z" itemprop="datePublished">2016-04-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/05/重写方法支持右滑返回/">重写方法支持右滑返回</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>将UIGestureRecognizerDelegate放在公共导航类YXLNavigationController里遵守，并设置代理为导航类，但是，只遵守-gestureRecognizerShouldBegin:代理方法。</p>
+<pre><code><span class="class"><span class="keyword">@interface</span> <span class="title">YXLNavigationController</span> () &lt;<span class="title">UIGestureRecognizerDelegate</span>&gt;</span>
+
+<span class="keyword">@end</span>
+
+<span class="class"><span class="keyword">@implementation</span> <span class="title">YXLNavigationController</span></span>
+
+
+- (<span class="keyword">void</span>)viewDidLoad {
+[<span class="keyword">super</span> viewDidLoad];
+<span class="keyword">self</span><span class="variable">.interactivePopGestureRecognizer</span><span class="variable">.delegate</span> = <span class="keyword">self</span>;
+}
+
+- (<span class="built_in">BOOL</span>)gestureRecognizerShouldBegin:(<span class="built_in">UIGestureRecognizer</span> *)gestureRecognizer {
+  <span class="built_in">BOOL</span> ok = <span class="literal">YES</span>; <span class="comment">// 默认为支持右滑反回</span>
+ <span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.topViewController</span> isKindOfClass:[YXLBaseViewController class]]) {
+<span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.topViewController</span> respondsToSelector:<span class="keyword">@selector</span>(gestureRecognizerShouldBegin)]) {
+  YXLBaseViewController *vc = (YXLBaseViewController *)<span class="keyword">self</span><span class="variable">.topViewController</span>;
+ ok = [vc gestureRecognizerShouldBegin];
+  }
+ }
+<span class="keyword">return</span> ok;
+}
+
+<span class="keyword">@end</span>
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-AsyncSocket" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -228,10 +303,11 @@
 <p>环境</p>
 <p><a href="https://github.com/robbiehanson/CocoaAsyncSocket" target="_blank" rel="external">下载AsyncSocket</a>类库，将RunLoop文件夹下的AsyncSocket.h, AsyncSocket.m, AsyncUdpSocket.h, AsyncUdpSocket.m 文件拷贝到自己的project中</p>
 <p>添加CFNetwork.framework, 在使用socket的文件头</p>
-<p>#import <sys socket.h=""></sys></p>
-<p>#import <netinet in.h=""></netinet></p>
-<p>#import <arpa inet.h=""></arpa></p>
-<p>#import <unistd.h><br>使用</unistd.h></p>
+<pre><code><span class="id">#import</span> &lt;sys/socket.h&gt;
+<span class="id">#import</span> &lt;netinet/<span class="keyword">in</span>.h&gt;
+<span class="id">#import</span> &lt;arpa/inet.h&gt;
+<span class="id">#import</span> &lt;unistd.h&gt;
+</code></pre><p>使用</p>
 <ol>
 <li>socket 连接</li>
 </ol>
@@ -1361,69 +1437,6 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
       
       
 
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-UIAlertController使用方法" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/30/UIAlertController使用方法/" class="article-date">
-  	<time datetime="2015-11-30T15:00:58.000Z" itemprop="datePublished">2015-11-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/30/UIAlertController使用方法/">UIAlertController使用方法</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="UIAlertController使用">UIAlertController使用</h2><p>UIAlertController基本可以简单的理解为UIAlertView + UIActionSheet。<br>需要注意的是：UIAcertController是要在viewDidAppear之后加载才会显示。</p>
-<h3 id="UIAlertView">UIAlertView</h3><p><img src="http://i12.tietuku.com/c7ea0283c65d8aee.png" alt=""></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UIAlertController/">UIAlertController</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/11/30/UIAlertController使用方法/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>

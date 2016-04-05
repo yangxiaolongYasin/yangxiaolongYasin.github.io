@@ -3,17 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>杨晓龙</title>
+  <title>重写方法支持右滑返回 | 杨晓龙</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="杨晓龙">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="将UIGestureRecognizerDelegate放在公共导航类YXLNavigationController里遵守，并设置代理为导航类，但是，只遵守-gestureRecognizerShouldBegin:代理方法。
+@interface YXLNavigationController () &amp;lt;UIGestureRecognizerDelegate&amp;gt;
+
+@end
+
+@impl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重写方法支持右滑返回">
+<meta property="og:url" content="http://yoursite.com/2016/04/05/重写方法支持右滑返回/index.html">
 <meta property="og:site_name" content="杨晓龙">
-<meta property="og:description">
+<meta property="og:description" content="将UIGestureRecognizerDelegate放在公共导航类YXLNavigationController里遵守，并设置代理为导航类，但是，只遵守-gestureRecognizerShouldBegin:代理方法。
+@interface YXLNavigationController () &amp;lt;UIGestureRecognizerDelegate&amp;gt;
+
+@end
+
+@impl">
+<meta property="og:updated_time" content="2016-04-05T01:38:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杨晓龙">
-<meta name="twitter:description">
+<meta name="twitter:title" content="重写方法支持右滑返回">
+<meta name="twitter:description" content="将UIGestureRecognizerDelegate放在公共导航类YXLNavigationController里遵守，并设置代理为导航类，但是，只遵守-gestureRecognizerShouldBegin:代理方法。
+@interface YXLNavigationController () &amp;lt;UIGestureRecognizerDelegate&amp;gt;
+
+@end
+
+@impl">
   
     <link rel="alternative" href="/atom.xml" title="杨晓龙" type="application/atom+xml">
   
@@ -194,13 +210,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-UIAlertController使用方法" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-重写方法支持右滑返回" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/11/30/UIAlertController使用方法/" class="article-date">
-  	<time datetime="2015-11-30T15:00:58.000Z" itemprop="datePublished">2015-11-30</time>
+      <a href="/2016/04/05/重写方法支持右滑返回/" class="article-date">
+  	<time datetime="2016-04-05T01:34:01.000Z" itemprop="datePublished">2016-04-05</time>
 </a>
     </div>
   
@@ -212,235 +226,108 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/30/UIAlertController使用方法/">UIAlertController使用方法</a>
+    <h1 class="article-title" itemprop="name">
+      重写方法支持右滑返回
     </h1>
   
 
       </header>
       
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="UIAlertController使用">UIAlertController使用</h2><p>UIAlertController基本可以简单的理解为UIAlertView + UIActionSheet。<br>需要注意的是：UIAcertController是要在viewDidAppear之后加载才会显示。</p>
-<h3 id="UIAlertView">UIAlertView</h3><p><img src="http://i12.tietuku.com/c7ea0283c65d8aee.png" alt=""></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UIAlertController/">UIAlertController</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/11/30/UIAlertController使用方法/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-刚刚开始" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/29/刚刚开始/" class="article-date">
-  	<time datetime="2015-11-29T08:26:25.000Z" itemprop="datePublished">2015-11-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="article-info article-info-post">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/29/刚刚开始/">刚刚开始</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我是一名iOS工程师，由于工作原因，一直没有时间来更新博客，现在有时间写博客了，算是对自己掌握的知识整理与回顾，希望能给人带来方便。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-cocoaPods的安装和使用" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/01/03/cocoaPods的安装和使用/" class="article-date">
-  	<time datetime="2015-01-03T14:44:23.000Z" itemprop="datePublished">2015-01-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/03/cocoaPods的安装和使用/">CocoaPods的安装和使用</a>
-    </h1>
-  
 
-      </header>
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>当你开发iOS应用时，会经常使用到很多第三方开源类库，比如JSONKit，AFNetWorking等等。可能某个类库又用到其他类库，所以要使用它，必须得另外下载其他类库，而其他类库又用到其他类库，“子子孙孙无穷尽也”，这也许是比较特殊的情况。总之小编的意思就是，手动一个个去下载所需类库十分麻烦。另外一种常见情况是，你项目中用到的类库有更新，你必须得重新下载新版本，重新加入到项目中，十分麻烦。如果能有什么工具能解决这些恼人的问题，那将“善莫大焉”。所以，你需要 CocoaPods。</p>
-<p><img src="http://i5.tietuku.com/cd45c917efe09a85.jpg" alt=""></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cocoaPods/">cocoaPods</a></li></ul>
-	</div>
+        <p>将UIGestureRecognizerDelegate放在公共导航类YXLNavigationController里遵守，并设置代理为导航类，但是，只遵守-gestureRecognizerShouldBegin:代理方法。</p>
+<pre><code><span class="class"><span class="keyword">@interface</span> <span class="title">YXLNavigationController</span> () &lt;<span class="title">UIGestureRecognizerDelegate</span>&gt;</span>
 
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/iOS/">iOS</a>
-	</div>
+<span class="keyword">@end</span>
+
+<span class="class"><span class="keyword">@implementation</span> <span class="title">YXLNavigationController</span></span>
 
 
+- (<span class="keyword">void</span>)viewDidLoad {
+[<span class="keyword">super</span> viewDidLoad];
+<span class="keyword">self</span><span class="variable">.interactivePopGestureRecognizer</span><span class="variable">.delegate</span> = <span class="keyword">self</span>;
+}
+
+- (<span class="built_in">BOOL</span>)gestureRecognizerShouldBegin:(<span class="built_in">UIGestureRecognizer</span> *)gestureRecognizer {
+  <span class="built_in">BOOL</span> ok = <span class="literal">YES</span>; <span class="comment">// 默认为支持右滑反回</span>
+ <span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.topViewController</span> isKindOfClass:[YXLBaseViewController class]]) {
+<span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.topViewController</span> respondsToSelector:<span class="keyword">@selector</span>(gestureRecognizerShouldBegin)]) {
+  YXLBaseViewController *vc = (YXLBaseViewController *)<span class="keyword">self</span><span class="variable">.topViewController</span>;
+ ok = [vc gestureRecognizerShouldBegin];
+  }
+ }
+<span class="keyword">return</span> ok;
+}
+
+<span class="keyword">@end</span>
+</code></pre>
       
-        <p class="article-more-link">
-          <a  href="/2015/01/03/cocoaPods的安装和使用/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
     </div>
     
   </div>
   
-</article>
-
-
-
-
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="[post]-hexo-搭建" class="article article-type-[post]" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2014/09/28/hexo-搭建/" class="article-date">
-  	<time datetime="2014-09-28T11:23:19.000Z" itemprop="datePublished">2014-09-28</time>
-</a>
-    </div>
+    <a href="/2016/04/01/AsyncSocket/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AsyncSocket</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/28/hexo-搭建/">hexo--搭建</a>
-    </h1>
-  
+</nav>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="安装过程中如果出现问题请到最后面查看问题总结，或许能帮助你解决问题。ß">安装过程中如果出现问题请到最后面查看问题总结，或许能帮助你解决问题。ß</h3><h2 id="前言">前言</h2><hr>
-<p>Hexo是一个很好的博客，个人觉得他的界面干净利落，阅读体验也是很好。初次接触Hexo是在朋友的介绍下才知道的，hexo是需要手动搭建（觉得B格很高），在朋友的帮助下也终于是完成了。<br>开篇记录一下搭建的过程希望能帮助到浏览到这里的朋友<br>我的系统为OS X，windows也可以参考。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo教程/">hexo教程</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/hexo/">hexo</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2014/09/28/hexo-搭建/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
   
 </article>
 
 
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="重写方法支持右滑返回" data-title="重写方法支持右滑返回" data-url="http://yoursite.com/2016/04/05/重写方法支持右滑返回/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
 
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -464,8 +351,8 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

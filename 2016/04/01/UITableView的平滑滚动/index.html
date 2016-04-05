@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://ww4.sinaimg.cn/mw690/6941baebgw1f2dtnvzbt2j20go0tmn17.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/mw690/6941baebgw1f2dtnudb8zj20go0tmaed.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/mw690/6941baebgw1f2dtntnqklj20go0tmn1j.jpg">
-<meta property="og:updated_time" content="2016-04-05T09:28:57.000Z">
+<meta property="og:updated_time" content="2016-04-05T09:30:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableView的完美平滑滚动">
 <meta name="twitter:description" content="闲话少叙，直接来干货第一点是即使要显示更多内容，也要重用 cell/header/footer 的单个实例（single instance）。这是优化 UIScrollView（UITableView 的父类）最显著的方式，苹果工程师已在回收机制上做了处理。正确的做法是，你应该持有唯一的 cell/header/footer 类，且只初始化了一次，并返回给 UITableView 来重用该对象。">

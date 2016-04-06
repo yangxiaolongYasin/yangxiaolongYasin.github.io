@@ -227,22 +227,22 @@
 </code></pre><p>UITableView的分割线默认是开头空15像素点的（好像是15来着～～），产品经理有时候希望能够定格显示，那么你可能会这么做。</p>
 <pre><code><span class="keyword">self</span><span class="variable">.tableView</span><span class="variable">.separatorInset</span> = <span class="built_in">UIEdgeInsetsZero</span>;
 </code></pre><p>但是你很快就会发现这么做并没有效果，这是因为separatorInset这个属性在iOS7以后就已经失效了，但是我们还是能够达到同样的效果，你可以在你的tablevView的代理协议实现界面加上下面这段代码：</p>
-<pre><code>-(<span class="typename">void</span>)viewDidLayoutSubviews
+<pre><code><span class="tag">-</span>(void)<span class="tag">viewDidLayoutSubviews</span>
 {
- <span class="keyword">if</span> ([self.tableView <span class="string">respondsToSelector:</span><span class="annotation">@selector</span>(<span class="string">setSeparatorInset:</span>)]) {
-  [self.tableView <span class="string">setSeparatorInset:</span>UIEdgeInsetsMake(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)];
+ <span class="tag">if</span> ([self.tableView <span class="attribute">respondsToSelector</span>:<span class="variable">@selector</span>(<span class="attribute">setSeparatorInset</span>:)]) {
+  <span class="attr_selector">[self.tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)]</span>;
   }
- <span class="keyword">if</span> ([self.tableView <span class="string">respondsToSelector:</span><span class="annotation">@selector</span>(<span class="string">setLayoutMargins:</span>)]) {
-  [self.tableView <span class="string">setLayoutMargins:</span>UIEdgeInsetsMake(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)];
+ <span class="tag">if</span> ([self.tableView <span class="attribute">respondsToSelector</span>:<span class="variable">@selector</span>(<span class="attribute">setLayoutMargins</span>:)]) {
+  <span class="attr_selector">[self.tableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)]</span>;
   }
  }
-(<span class="typename">void</span>)<span class="string">tableView:</span>(UITableView *)tableView <span class="string">willDisplayCell:</span>(UITableViewCell *)cell <span class="string">forRowAtIndexPath:</span>(NSIndexPath *)indexPath
+<span class="tag">-</span>(void)<span class="tag">tableView</span>:(UITableView *)<span class="tag">tableView</span> <span class="tag">willDisplayCell</span>:(UITableViewCell *)<span class="tag">cell</span> <span class="tag">forRowAtIndexPath</span>:(NSIndexPath *)<span class="tag">indexPath</span>
 {
- <span class="keyword">if</span> ([cell <span class="string">respondsToSelector:</span><span class="annotation">@selector</span>(<span class="string">setSeparatorInset:</span>)]) {
-  [cell <span class="string">setSeparatorInset:</span>UIEdgeInsetsZero];
+ <span class="tag">if</span> ([cell <span class="attribute">respondsToSelector</span>:<span class="variable">@selector</span>(<span class="attribute">setSeparatorInset</span>:)]) {
+  <span class="attr_selector">[cell setSeparatorInset:UIEdgeInsetsZero]</span>;
   }
-  <span class="keyword">if</span> ([cell <span class="string">respondsToSelector:</span><span class="annotation">@selector</span>(<span class="string">setLayoutMargins:</span>)]) {
-  [cell <span class="string">setLayoutMargins:</span>UIEdgeInsetsZero];
+  <span class="tag">if</span> ([cell <span class="attribute">respondsToSelector</span>:<span class="variable">@selector</span>(<span class="attribute">setLayoutMargins</span>:)]) {
+  <span class="attr_selector">[cell setLayoutMargins:UIEdgeInsetsZero]</span>;
    }
   }
 </code></pre><p>再次运行，好了我们的UITableView终于顶头显示分割线了。</p>

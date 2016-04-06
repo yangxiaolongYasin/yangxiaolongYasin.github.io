@@ -196,6 +196,136 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-深入了解UITableView" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/06/深入了解UITableView/" class="article-date">
+  	<time datetime="2016-04-06T00:38:06.000Z" itemprop="datePublished">2016-04-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/06/深入了解UITableView/">深入了解UITableView</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UITableView是工程开发中最经常使用到的UI控件，但是你真的了解它嘛，这里记录几点有用的但你可能并不知道的。<br>当我们的数据未能显示满一屏幕的时候，UITableView会显示多余的横线，这个时候你如果希望去掉这些横线，你可以加上这句话。</p>
+<pre><code><span class="literal">self</span>.<span class="built_in">table</span>View.<span class="built_in">table</span>FooterView = [[UIView alloc]init];
+</code></pre><p>UITableView的分割线默认是开头空15像素点的（好像是15来着～～），产品经理有时候希望能够定格显示，那么你可能会这么做。</p>
+<pre><code><span class="keyword">self</span><span class="variable">.tableView</span><span class="variable">.separatorInset</span> = <span class="built_in">UIEdgeInsetsZero</span>;
+</code></pre><p>但是你很快就会发现这么做并没有效果，这是因为separatorInset这个属性在iOS7以后就已经失效了，但是我们还是能够达到同样的效果，你可以在你的tablevView的代理协议实现界面加上下面这段代码：</p>
+<pre><code>-(<span class="typename">void</span>)viewDidLayoutSubviews
+{
+ <span class="keyword">if</span> ([self.tableView <span class="string">respondsToSelector:</span><span class="annotation">@selector</span>(<span class="string">setSeparatorInset:</span>)]) {
+  [self.tableView <span class="string">setSeparatorInset:</span>UIEdgeInsetsMake(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)];
+  }
+ <span class="keyword">if</span> ([self.tableView <span class="string">respondsToSelector:</span><span class="annotation">@selector</span>(<span class="string">setLayoutMargins:</span>)]) {
+  [self.tableView <span class="string">setLayoutMargins:</span>UIEdgeInsetsMake(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)];
+  }
+ }
+(<span class="typename">void</span>)<span class="string">tableView:</span>(UITableView *)tableView <span class="string">willDisplayCell:</span>(UITableViewCell *)cell <span class="string">forRowAtIndexPath:</span>(NSIndexPath *)indexPath
+{
+ <span class="keyword">if</span> ([cell <span class="string">respondsToSelector:</span><span class="annotation">@selector</span>(<span class="string">setSeparatorInset:</span>)]) {
+  [cell <span class="string">setSeparatorInset:</span>UIEdgeInsetsZero];
+  }
+  <span class="keyword">if</span> ([cell <span class="string">respondsToSelector:</span><span class="annotation">@selector</span>(<span class="string">setLayoutMargins:</span>)]) {
+  [cell <span class="string">setLayoutMargins:</span>UIEdgeInsetsZero];
+   }
+  }
+</code></pre><p>再次运行，好了我们的UITableView终于顶头显示分割线了。</p>
+<p>很多情况下我们的UITableViewCell的高度是动态不确定的，比如说很多聊天的界面都需要我们去动态的计算cell的高度，你可能会在heightForRowAtIndexPath代理协议方法中返回你计算好的cell高度，然后在苹果推出约束以后，我们其实有更加方便的方法去实现相同的效果。你可以尝试在你的代码中加入以下两行代码：</p>
+<pre><code><span class="literal">self</span>.<span class="built_in">table</span>View.estimatedRowHeight = <span class="number">68.0</span>;
+<span class="literal">self</span>.<span class="built_in">table</span>View.rowHeight = UITableViewAutomaticDimension;
+</code></pre><p>再次运行你的程序，其实你发现了好像你的cell并没有动态的返回高度，这是因为上面说了，这两行代码必须配合约束来使用。<br>我们拖出一个SB，然后在cell上放上一个label，讲label的numberOfLines属性设置为0，然后设置好label的上下左右约束，然后再对label的内容进行赋值，再次运行你的程序，这个时候你的cell就会动态的显示高度了，label的高度取决于你的内容的多少，同时按照你的约束进行显示。</p>
+<p>-你可能写过这样下面这样的代码</p>
+<pre><code>-(<span class="typename">void</span>)<span class="string">tableView:</span>(UITableView *)tableView <span class="string">didSelectRowAtIndexPath:</span>(NSIndexPath *)indexPath{
+[tableView <span class="string">deselectRowAtIndexPath:</span>indexPath <span class="string">animated:</span><span class="literal">true</span>];
+[tableView beginUpdates];
+ ROW--;<span class="comment">//此操作表示减少数据源的个数。</span>
+ [tableView <span class="string">deleteRowsAtIndexPaths:</span>@[indexPath] <span class="string">withRowAnimation:</span>UITableViewRowAnimationRight];
+ [tableView endUpdates];
+ }
+</code></pre><p>用一个动画来删除某一个cell,其中有两行代码特别有意思：</p>
+<pre><code><span class="title">[tableView beginUpdates]</span><span class="comment">;</span>
+<span class="title">[tableView endUpdates]</span><span class="comment">;</span>
+</code></pre><p>这俩吧其实和[tableView reloadData]作用类似，但是这俩货却能非常轻松的创造出不错的效果，比如说和我们上一点说的用约束来控制label的行高相结合的是的时候，我们先来看一下效果:<br><img src="http://jbcdn2.b0.upaiyun.com/2016/03/11b5fc6749c7ba37d05b8d13550433ad.gif" alt=""><br>一个tableView点击缩放的效果<br>其实我的代码很少，核心代码只有以下几行：</p>
+<pre><code>-(<span class="typename">void</span>)<span class="string">tableView:</span>(UITableView *)tableView <span class="string">didSelectRowAtIndexPath:</span>(NSIndexPath *)indexPath{
+[tableView <span class="string">deselectRowAtIndexPath:</span>indexPath <span class="string">animated:</span><span class="literal">true</span>];
+UITableViewCell *cell = [tableView <span class="string">cellForRowAtIndexPath:</span>indexPath];
+UILabel *label = [cell.contentView <span class="string">viewWithTag:</span><span class="number">1000</span>];
+[tableView beginUpdates];
+<span class="keyword">if</span> (label.numberOfLines == <span class="number">0</span>) {
+    label.numberOfLines = <span class="number">1</span>;
+}<span class="keyword">else</span>{
+    label.numberOfLines = <span class="number">0</span>;
+}
+[tableView endUpdates];
+}
+</code></pre><p>然后在他的点击动作中改变label的numberOfLines，同时结合使用：</p>
+<pre><code><span class="title">[tableView beginUpdates]</span><span class="comment">;</span>
+<span class="title">[tableView endUpdates]</span><span class="comment">;</span>
+</code></pre><p>像上面po出来的代码那样，这个时候你如果使用[tableView reloadData]也能够达到改变cell高度的效果，但是界面上就不会有使用[tableView beginUpdates]那么流畅,以此类推，其实在很多地方都可以用[tableView beginUpdates]来代替[tableView reloadData]来达到更好的效果.</p>
+<p>你可能会经常忽略UITableView的一些属性和回调，必须下面这个方法:</p>
+<pre><code>-(<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView willDisplayCell:(<span class="built_in">UITableViewCell</span> *)cell forRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath{
+<span class="built_in">CGFloat</span> offSet = tableView<span class="variable">.contentOffset</span><span class="variable">.y</span>;
+<span class="keyword">if</span> (offSet&lt;=<span class="number">0</span>) {
+  <span class="keyword">return</span>;
+  }
+<span class="built_in">CGRect</span> oldRect = cell<span class="variable">.frame</span>;
+<span class="built_in">CGRect</span> newRect = cell<span class="variable">.frame</span>;
+newRect<span class="variable">.origin</span><span class="variable">.x</span> += <span class="number">50</span>;
+cell<span class="variable">.frame</span> = newRect;
+[<span class="built_in">UIView</span> animateWithDuration:<span class="number">0.5</span> animations:^{
+  cell<span class="variable">.frame</span> = oldRect;
+  }];
+  }
+</code></pre><p>如果你这么写会简单的有一个展示的动画，这个回调就是在cell展示到屏幕的时候发起的动作。<br>还有这个属性：tableView.visibleCells，你的产品经理可能会要求你的cell在滚动的时候进行一些展示类的动画—-滚动的时候进行展开收起之类的，这样的话你可以这么做：</p>
+<pre><code>-(void)scrollViewDidScroll:(UIScrollView <span class="keyword">*</span>)scrollView{
+for (UITableViewCell <span class="keyword">*</span>cell in _tableView.visibleCells) {
+  /<span class="keyword">*</span><span class="keyword">*</span>
+   <span class="keyword">*</span>  你可以在这里对当前的cell进行一些操作
+   <span class="keyword">*</span>
+   <span class="keyword">*</span>/
+   }
+ }
+</code></pre><p>这个属性会返回即将展示到屏幕上的cell，而放在这个滚动的回掉中你就可以对你的cell进行不停的调整了，具体能做出什么动画，就靠你的想象能力了。<br>tableView可能会造成你的Controller过于庞大，或许你可以使用MVVM类似的构架来瘦身你的Controller。。。。。。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-重写方法支持右滑返回" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1393,72 +1523,6 @@ AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 <li>Add the new ColorBuilder subclass in the switch statement in the ColorBuilderFactory.</li>
 </ul>
 
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-模仿新浪UI" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/21/模仿新浪UI/" class="article-date">
-  	<time datetime="2016-01-21T06:53:50.000Z" itemprop="datePublished">2016-01-21</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/21/模仿新浪UI/">模仿新浪UI</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://raw.githubusercontent.com/bb-coder/BHBPopView/master/LICENSE" target="_blank" rel="external"><img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat" alt="License MIT"></a><br><a href="http://cocoapods.org/?q=BHBPopView" target="_blank" rel="external"><img src="http://img.shields.io/cocoapods/v/YYKit.svg?style=flat" alt="CocoaPods"></a><br><a href="http://cocoapods.org/?q=BHBPopView" target="_blank" rel="external"><img src="http://img.shields.io/cocoapods/p/YYKit.svg?style=flat" alt="CocoaPods"></a><br><a href="https://www.apple.com/nl/ios/" target="_blank" rel="external"><img src="https://img.shields.io/badge/support-iOS%207%2B%20-blue.svg?style=flat" alt="Support"></a></p>
-<h1 id="BHBPopView">BHBPopView</h1><p>仿新浪微博客户端“加号”按钮弹出动画</p>
-<p><img src="http://7xkdhe.com1.z0.glb.clouddn.com/sinaAnimation1.gif" alt="演示1"><br><img src="http://7xkdhe.com1.z0.glb.clouddn.com/sinaAnimation2.gif" alt="演示2"></p>
-<p>##怎么使用：</p>
-<p>###0.下载或者在cocoapods中引入：</p>
-<pre><code><span class="title">pod</span> <span class="string">'BHBPopView'</span>, <span class="string">'~&gt; 1.0.0'</span>
-</code></pre><p>###1.导入头文件</p>
-<pre><code><span class="id">#import</span> <span class="string">"BHBPopView.h"</span>
-</code></pre><p>###2.显示弹出框<br>    //添加popview<br>    [BHBPopView showToView:self.view<br>        andImages:@[@”images.bundle/tabbar_compose_idea”,<br>          @”images.bundle/tabbar_compose_photo”,@”images.bundle/tabbar_compose_camera”,<br>          @”images.bundle/tabbar_compose_lbs”,@”images.bundle/tabbar_compose_review”,<br>          @”images.bundle/tabbar_compose_more”]<br>        andTitles:<br>          @[@”Text”,@”Albums”,@”Camera”,@”Check in”,@”Review”,@”More”]<br>        andSelectBlock:^(BHBItem *item, NSInteger index) {</p>
-<pre><code>    }
-]<span class="comment">;</span>
-</code></pre><p>###3.使用带more按钮滑动显示第二屏功能<br>    BHBItem <em> item0 = [[BHBItem alloc]initWithTitle:@”Text” Icon:@”images.bundle/tabbar_compose_idea”];<br>    BHBItem </em> item1 = [[BHBItem alloc]initWithTitle:@”Albums” Icon:@”images.bundle/tabbar_compose_photo”];<br>    BHBItem <em> item2 = [[BHBItem alloc]initWithTitle:@”Camera” Icon:@”images.bundle/tabbar_compose_camera”];<br>    BHBItem </em> item3 = [[BHBItem alloc]initWithTitle:@”Check in” Icon:@”images.bundle/tabbar_compose_lbs”];<br>    BHBItem <em> item4 = [[BHBItem alloc]initWithTitle:@”Review” Icon:@”images.bundle/tabbar_compose_review”];<br>    BHBItem </em> item5 = [[BHBItem alloc]initWithTitle:@”More” Icon:@”images.bundle/tabbar_compose_more”];<br>    //第六个按钮是more按钮<br>    item5.isMore = YES;<br>    BHBItem <em> item6 = [[BHBItem alloc]initWithTitle:@”Friend Circle” Icon:@”images.bundle/tabbar_compose_friend”];<br>    BHBItem </em> item7 = [[BHBItem alloc]initWithTitle:@”Weibo Camera” Icon:@”images.bundle/tabbar_compose_wbcamera”];<br>    BHBItem <em> item8 = [[BHBItem alloc]initWithTitle:@”Music” Icon:@”images.bundle/tabbar_compose_music”];<br>    BHBItem </em> item9 = [[BHBItem alloc]initWithTitle:@”Blog” Icon:@”images.bundle/tabbar_compose_weibo”];<br>    BHBItem <em> item10 = [[BHBItem alloc]initWithTitle:@”Collection” Icon:@”images.bundle/tabbar_compose_transfer”];<br>    BHBItem </em> item11 = [[BHBItem alloc]initWithTitle:@”Voice” Icon:@”images.bundle/tabbar_compose_voice”];</p>
-<pre><code><span class="comment">//添加popview</span>
-[BHBPopView <span class="string">showToView:</span>self.view <span class="string">withItems:</span>@[item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11]<span class="string">andSelectBlock:</span>^(BHBItem *item, NSInteger index) {
-    NSLog(@<span class="string">"%ld,选中%@"</span>,index,item.title);
-}];
-</code></pre>
       
     </div>
     
